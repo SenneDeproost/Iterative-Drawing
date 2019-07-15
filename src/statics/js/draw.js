@@ -10,7 +10,7 @@ window.onload = function() {
     paint_style = getComputedStyle(painting);
 
     // Settings of ctx
-    ctx.lineWidth = 3;
+    ctx.lineWidth = 30;
     ctx.lineJoin = 'round';
     ctx.lineCap = 'round';
     ctx.strokeStyle = '#00CC99';
@@ -24,6 +24,7 @@ window.onload = function() {
 
     // Mouse press
     canvas.addEventListener('mousedown', function(e) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.beginPath();
         ctx.moveTo(mouse.x, mouse.y);
         canvas.addEventListener('mousemove', onPaint, false);

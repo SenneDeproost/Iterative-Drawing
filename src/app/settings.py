@@ -118,3 +118,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# This is the static files folder name which you created in django project root folder.
+# This is different from above STATIC_URL.
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'statics'),
+]
