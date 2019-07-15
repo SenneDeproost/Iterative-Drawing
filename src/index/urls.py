@@ -1,8 +1,9 @@
-from django.urls import path
-from . import views as i
+from django.urls import include, path
+from . import views
 
 
 urlpatterns = [
-    path('', i.index),
-    path("test", i.test, name='test')
+    path('', views.index),
+    path("test", views.test, name='test'),
+    path("register", include('form.urls'), name='register')
 ]

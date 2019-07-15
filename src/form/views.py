@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import Context, loader
 from .form import RegistrationForm
 
+
 def form(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
