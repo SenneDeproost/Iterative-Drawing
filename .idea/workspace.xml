@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="049a6749-3753-4cd2-afad-21eb8b33763e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/form/form.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/form/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/form/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/templates/registration_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/registration_form.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,7 +31,11 @@
           </file>
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/templates/training.html">
-              <provider selected="true" editor-type-id="text-editor" />
+              <provider selected="true" editor-type-id="text-editor">
+                <state>
+                  <caret column="4" lean-forward="true" selection-start-column="4" selection-end-column="4" />
+                </state>
+              </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
@@ -95,8 +96,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/form/form.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="105">
-                  <caret line="5" selection-start-line="5" selection-end-line="5" />
+                <state relative-caret-position="126">
+                  <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
                 </state>
               </provider>
             </entry>
@@ -126,6 +127,7 @@
         <option value="$PROJECT_DIR$/src/templates/registration_form.html" />
         <option value="$PROJECT_DIR$/src/form/form.py" />
         <option value="$PROJECT_DIR$/src/form/views.py" />
+        <option value="$PROJECT_DIR$/src/templates/training.html" />
       </list>
     </option>
   </component>
@@ -294,12 +296,12 @@
       <workItem from="1562792750840" duration="513000" />
       <workItem from="1562834384589" duration="191000" />
       <workItem from="1563054945254" duration="2926000" />
-      <workItem from="1563095865767" duration="3582000" />
+      <workItem from="1563095865767" duration="4217000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13253000" />
+    <option name="totallyTimeSpent" value="13888000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
@@ -352,13 +354,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/form/form.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
@@ -393,8 +388,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/form/form.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/training.html">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="4" lean-forward="true" selection-start-column="4" selection-end-column="4" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
