@@ -1,8 +1,8 @@
 from django.urls import path
-from . import views
-from ..form import views
+from . import views as i
+
 
 urlpatterns = [
-    path('', views.index),
-    path("/test", views.test, name='test')
+    path('', i.index),
+    path("test", i.test, name='test')
 ]
