@@ -24,7 +24,7 @@ window.onload = function() {
 
     // Mouse press
     canvas.addEventListener('mousedown', function(e) {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        //clearCanvas();
         ctx.beginPath();
         ctx.moveTo(mouse.x, mouse.y);
         canvas.addEventListener('mousemove', onPaint, false);
@@ -40,3 +40,7 @@ var onPaint = function() {
     ctx.lineTo(mouse.x, mouse.y);
     ctx.stroke();
 };
+
+var clearCanvas = function () {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}

@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="049a6749-3753-4cd2-afad-21eb8b33763e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/training/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/src/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/public/js/draw.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/statics/js/draw.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/statics/js/draw.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/statics/js/draw.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/templates/training.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/training.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/templates/training_canvas.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/training/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/training/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,6 +50,15 @@
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1879">
+              <caret line="125" column="1" lean-forward="true" selection-start-line="125" selection-start-column="1" selection-end-line="125" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -112,29 +114,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/statics/js/draw.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/templates/training.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+            <state relative-caret-position="462">
+              <caret line="40" column="17" lean-forward="true" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/index/urls.py">
+        <entry file="file://$PROJECT_DIR$/src/templates/training.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="1" column="11" selection-end-line="10" selection-end-column="1" />
+            <state relative-caret-position="315">
+              <caret line="15" column="8" lean-forward="true" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -163,7 +156,6 @@
       <list>
         <option value="$PROJECT_DIR$/src/view/index.py" />
         <option value="$PROJECT_DIR$/src/app/Public/registration_form.html" />
-        <option value="$PROJECT_DIR$/src/app/settings.py" />
         <option value="$PROJECT_DIR$/src/templates/test.html" />
         <option value="$PROJECT_DIR$/src/form/urls.py" />
         <option value="$PROJECT_DIR$/src/form/form.py" />
@@ -181,11 +173,13 @@
         <option value="$PROJECT_DIR$/src/training/views.py" />
         <option value="$PROJECT_DIR$/src/app/urls.py" />
         <option value="$PROJECT_DIR$/src/training/urls.py" />
+        <option value="$PROJECT_DIR$/src/app/settings.py" />
         <option value="$PROJECT_DIR$/src/templates/training.html" />
+        <option value="$PROJECT_DIR$/src/statics/js/draw.js" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="x" value="-1" />
     <option name="y" value="-24" />
     <option name="width" value="1922" />
@@ -211,42 +205,6 @@
               <item name="follow_the_leader" type="b2602c69:ProjectViewProjectNode" />
               <item name="follow_the_leader" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="follow_the_leader" type="b2602c69:ProjectViewProjectNode" />
-              <item name="follow_the_leader" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="follow_the_leader" type="b2602c69:ProjectViewProjectNode" />
-              <item name="follow_the_leader" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="form" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="follow_the_leader" type="b2602c69:ProjectViewProjectNode" />
-              <item name="follow_the_leader" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="index" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="follow_the_leader" type="b2602c69:ProjectViewProjectNode" />
-              <item name="follow_the_leader" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="statics" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="follow_the_leader" type="b2602c69:ProjectViewProjectNode" />
-              <item name="follow_the_leader" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="follow_the_leader" type="b2602c69:ProjectViewProjectNode" />
-              <item name="follow_the_leader" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="training" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -381,23 +339,23 @@
       <workItem from="1562834384589" duration="191000" />
       <workItem from="1563054945254" duration="2926000" />
       <workItem from="1563095865767" duration="4217000" />
-      <workItem from="1563177502186" duration="23190000" />
+      <workItem from="1563177502186" duration="25645000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37078000" />
+    <option name="totallyTimeSpent" value="39533000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="-24" width="1922" height="1105" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25878593" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25878593" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32903865" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3062438" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3062438" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -421,18 +379,11 @@
     <option name="version" value="1" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/follow_the_leader$Run_Server.coverage" NAME="Run Server Coverage Results" MODIFIED="1563203290987" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/follow_the_leader$Run_Server.coverage" NAME="Run Server Coverage Results" MODIFIED="1563261241494" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/view/index.py" />
     <entry file="file://$PROJECT_DIR$/env/lib/python3.7/site-packages/django/contrib/flatpages/views.py" />
-    <entry file="file://$PROJECT_DIR$/src/app/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="35" column="34" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/index/admin.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -575,6 +526,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1879">
+          <caret line="125" column="1" lean-forward="true" selection-start-line="125" selection-start-column="1" selection-end-line="125" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/training/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
@@ -582,17 +540,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/statics/js/draw.js">
+    <entry file="file://$PROJECT_DIR$/src/templates/training.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+        <state relative-caret-position="315">
+          <caret line="15" column="8" lean-forward="true" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/templates/training.html">
+    <entry file="file://$PROJECT_DIR$/src/statics/js/draw.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+        <state relative-caret-position="462">
+          <caret line="40" column="17" lean-forward="true" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
         </state>
       </provider>
     </entry>
