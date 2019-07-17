@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="049a6749-3753-4cd2-afad-21eb8b33763e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/statics/js/path.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/testing/TrainingSession.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/statics/js/draw.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/statics/js/draw.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/templates/training.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/training.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/testing/TrainingSession.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/testing/TrainingSession.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -96,10 +92,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/testing/TrainingSession.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="13" column="40" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
+            <state relative-caret-position="309">
+              <caret line="38" column="57" selection-start-line="38" selection-start-column="57" selection-end-line="38" selection-end-column="57" />
               <folding>
-                <element signature="e#0#6#0" expanded="true" />
+                <element signature="e#0#10#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -175,7 +171,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds">
     <option name="x" value="-1" />
     <option name="y" value="-24" />
     <option name="width" value="1922" />
@@ -345,12 +341,12 @@
       <workItem from="1563054945254" duration="2926000" />
       <workItem from="1563095865767" duration="4217000" />
       <workItem from="1563177502186" duration="41107000" />
-      <workItem from="1563349046181" duration="1406000" />
+      <workItem from="1563349046181" duration="3784000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56401000" />
+    <option name="totallyTimeSpent" value="58779000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="-24" width="1922" height="1105" extended-state="0" />
@@ -565,10 +561,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/testing/TrainingSession.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="13" column="40" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
+        <state relative-caret-position="309">
+          <caret line="38" column="57" selection-start-line="38" selection-start-column="57" selection-end-line="38" selection-end-column="57" />
           <folding>
-            <element signature="e#0#6#0" expanded="true" />
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
