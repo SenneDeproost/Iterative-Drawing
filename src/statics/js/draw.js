@@ -1,3 +1,5 @@
+// Inspired by https://www.codicode.com/art/how_to_draw_on_a_html5_canvas_with_a_mouse.aspx
+
 var canvas, ctx, painting, paint_style;
 var mouse = {x: 0, y: 0};
 
