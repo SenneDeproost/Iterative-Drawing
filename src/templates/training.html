@@ -6,12 +6,14 @@
           canvas{background-color: white}
       </style>
 
-       <meta charset="UTF-8">
+      <meta charset="UTF-8">
       <title>Training session</title>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-      {% load static %}
+     <!-- {% load static %}
       <script src="{% static "js/draw.js" %}"></script>
-      <script src="{% static "js/path.js" %}"></script>
+      <script src="{% static "js/path.js" %}"></script> -->
+      <script src="../statics/js/draw.js"></script>
+      <script src="../statics/js/path.js"></script>
   </head>
   <body>
   <div id="canvasDiv">
@@ -19,7 +21,7 @@
   </div>
   <div id="controls">
       <button type="button" onclick=clearCanvas()>Redo</button>
-      <button type="button">Submit</button>
+      <button type="button" onclick=send_path()>Submit</button>
   </div>
   </body>
 </html>

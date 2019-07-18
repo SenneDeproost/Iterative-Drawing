@@ -1,31 +1,30 @@
 // Inspired by https://codepen.io/jakebown/pen/weoVxg
-var recorder = {
 
-    var:resolution = 2,
+var frames = [];
 
-    // Get coordinates of mouse
-    capture:function() {
-        var coordinates;
-        $(window).mousemove(function (event) {
-            coordinates = [event.clientX, event.clientY];
-        });
-        return this.coordinates;
-    },
+// Record mouse movements
+$(window).mousemove(function (e) {
+    // button_pressed
+    var position = {"x": e.clientX, "y": e.clientY};
+    frames.push(position);
+});
+
+function reset_path() {
+    frames = [];
+}
+
+// https://stackoverflow.com/questions/24468459/sending-a-json-to-server-and-retrieving-a-json-in-return-without-jquery
+function send_input() {
+
+    var xhr = new XMLHttpRequest();
+    var url = "127.0.0.1";
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    var data = JSON.stringify(frames);
+    xhr.send(data);
+}
 
 
-    // Record mouse movements and push coordinates in list
-    listener:function() {
-      $(window).mousemove(function(e) {
 
-          setTimeout(this.listener, 1000/this.resolution)
 
-      });
-    }
-
-};
-
-/*
- * Listen for the mouse movements
- */
-recorder.frames = [];
-recorder.listener();
+var record = true;
