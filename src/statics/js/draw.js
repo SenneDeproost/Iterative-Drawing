@@ -17,6 +17,10 @@ var data = [
     {
         "x": 200,
         "y": 200
+    },
+     {
+        "x": 700,
+        "y": 400
     }
 ];
 
@@ -28,11 +32,7 @@ window.onload = function () {
     painting = document.getElementById('canvasDiv');
     paint_style = getComputedStyle(painting);
 
-    // Settings of ctx
-    ctx.lineWidth = 30;
-    ctx.lineJoin = 'round';
-    ctx.lineCap = 'round';
-    ctx.strokeStyle = '#00CC99';
+    setPenSettings();
 
     // Add eventListeners to the canvas
     // Moving mouse
@@ -61,28 +61,55 @@ window.onload = function () {
 
 ///////////////////////////////
 
+function setPenSettings() {
+    // Settings of ctx
+    ctx.lineWidth = 30;
+    ctx.lineJoin = 'round';
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = '#00CC99';
+}
+
 function onPaint() {
     ctx.lineTo(mouse.x, mouse.y);
     ctx.stroke();
 }
+
 function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     load_case(current_case);
 }
 
-function drawPoint(x, y) {
-    ctx.fillRect(x, y, 20, 20);
+function drawPoints(case_) {
+    for (i = 0; i < case_.length; i++) {
+        ctx.fillRect(case_[i].x - 10, case_[i].y - 10, 20, 20);
+    }
 }
 
-function get_case(id){
+function drawPath(case_) {
+     // Settings of ctx
+    ctx.lineWidth = 10;
+    ctx.lineJoin = 'square';
+    ctx.lineCap = 'square';
+    ctx.strokeStyle = 'black';
+
+
+    ctx.beginPath();
+    ctx.moveTo(case_[0].x, case_[0].y);
+    for (i = 1; i < case_.length; i++) {
+        ctx.lineTo(case_[i].x, case_[i].y);
+    }
+    ctx.stroke();
+    setPenSettings();
+}
+
+function getCase(id) {
     return data;
 }
 
 function load_case(id) {
-    var cur_case = get_case(id);
-    for (i = 0; i < data.length; i++) {
-        drawPoint(data[i].x, data[i].y)
-    }
+    var cur_case = getCase(id);
+    drawPoints(cur_case);
+    drawPath(cur_case);
 }
 
 
