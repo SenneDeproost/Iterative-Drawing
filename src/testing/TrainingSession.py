@@ -4,46 +4,44 @@ import math
 import random
 from os import listdir
 
+
 # A training session consists of several training cases. These cases are randomly drawn from the case directory or can
 # specified as a list of case files.
 class TrainingSession:
-    def __init__(self, participant):
+    def __init__(self, participant=None):
         self.participant = participant
         self.tolerance = 0.25            # Default error tolerance
-        self.numberOfCases = 5           # Default number of test cases
-        self.caseDir = "./draw_cases"     # Directory for training cases
+        self.n_cases = 5                 # Default number of test cases
+        self.caseDir = "./draw_cases"    # Directory for training cases
         self.results = []                # Results of the training session
         self.cases = []                  # Initialize with no cases loaded
 
     # Load TrainingCases
     def load_cases(self, *args):
-        cases = []
         if args:
-            # If a list od cases is given, load them into the session
+            # If a list of cases is given, load them into the session
             for arg in args:
-                cases.append(TrainingCase(arg, self.tolerance).load_case())
+                self.cases.append(TrainingCase(arg, self.tolerance).load_case())
         else:
             # Load random cases
             for file in random.shuffle(listdir(self.caseDir)):
+                # Load only csv files
                 if file.endswith(".csv"):
-                    cases.append(TrainingCase(file, self.tolerance).load_case())
-                if len(cases) == self.numberOfCases:
+                    self.cases.append(TrainingCase(file, self.tolerance).load_case())
+                # Stop after n_cases
+                if len(self.cases) == self.n_cases:
                     break
 
+    # Get a certain TrainingCase
+    def get_case(self, index):
+        if len(self.cases) - 1 <= index:
+            return self.cases[index]
+        else:
+            raise RuntimeError("Index is out of range in get_case")
 
 
-
-
-
-
-
-
-
-
-
-
-
-class TrainingCase
+# A TrainingCase consists of several trials the user can do
+class TrainingCase:
     def __init__(self, case_path, tolerance):
         self.casePath = case_path       # Which case
         self.numberOfTrials = 0         # How many times submitted
@@ -59,6 +57,7 @@ class TrainingCase
         return json.dumps([row for row in reader])
 
 
+# Each submitted input is validated in a TrainingTrial.
 class TrainingTrial:
     def __init__(self, case_data, tolerance):
         self.caseData = case_data
