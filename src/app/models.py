@@ -5,6 +5,7 @@ A Session is created after the registration of a user. Both Training and Testing
 set of examples the user can be trained and tested on.
 """
 
+
 class Participant:
     def __init__(self, form):
         self.first_name = form.cleaned_data.get('first_name')
@@ -16,9 +17,9 @@ class Participant:
 class Session:
     # Session is initialized with the information obtained by the participant's form.
     def __init__(self, form):
-        self.timestamp = time.time()             # Timestamp to record session time
-        self.participant = Participant(form)     # Participant details
-        self.status = 'registered'               # Record status of the participant (registered, trained or tested)
+        self.timestamp = time.time()  # Timestamp to record session time
+        self.participant = Participant(form)  # Participant details
+        self.status = 'registered'  # Record status of the participant (registered, trained or tested)
 
         self.training = self.create_training()
         self.testing = self.create_testing()

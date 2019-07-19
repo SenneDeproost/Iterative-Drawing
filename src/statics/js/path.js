@@ -25,6 +25,4 @@ function sendInput() {
 }
 
 
-
-
 var record = true;

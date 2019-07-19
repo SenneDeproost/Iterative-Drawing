@@ -19,7 +19,7 @@ var data = [
         "x": 200,
         "y": 200
     },
-     {
+    {
         "x": 700,
         "y": 400
     }
@@ -87,7 +87,7 @@ function drawPoints(case_) {
 }
 
 function drawPath(case_) {
-     // Settings of ctx
+    // Settings of ctx
     ctx.lineWidth = 10;
     ctx.lineJoin = 'square';
     ctx.lineCap = 'square';
@@ -107,6 +107,7 @@ function drawPath(case_) {
 function getCase(id) {
     return data
 }
+
 /*    // Store XMLHttpRequest and the JSON file location in variables
 var xhr = new XMLHttpRequest();
 var url = "127.0.0.1";

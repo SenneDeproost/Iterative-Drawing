@@ -1,7 +1,10 @@
-from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
-from .models import RegistrationForm
 import time
+
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+
+from .models import RegistrationForm
+
 
 def form(request):
     # Get data out form when POST method is used
