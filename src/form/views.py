@@ -7,11 +7,11 @@ from .models import RegistrationForm
 
 
 def form(request):
-    # Get data out form when POST method is used
+    # Get path out form when POST method is used
     if request.method == 'POST':
         # Get the form from the POST request
         form = RegistrationForm(request.POST)
-        # If the from is valid, extract the data from the form into a Session
+        # If the from is valid, extract the path from the form into a Session
         if form.is_valid():
             # Add user details to the current session
             request.session['first_name'] = form.cleaned_data.get('first_name')

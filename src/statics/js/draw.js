@@ -4,9 +4,10 @@ var canvas, ctx, painting, paint_style;
 var mouse = {x: 0, y: 0};
 var current_case = 0;
 var training = true;
+var host = window.location.hostname;
 
-
-var data = [
+// Default
+var path = [
     {
         "x": 20,
         "y": 20
@@ -105,37 +106,32 @@ function drawPath(case_) {
 
 // https://www.quackit.com/json/tutorial/json_with_http.cfm
 function getCase(id) {
-    return data
-}
-
-/*    // Store XMLHttpRequest and the JSON file location in variables
-var xhr = new XMLHttpRequest();
-var url = "127.0.0.1";
+    // Store XMLHttpRequest and the JSON file location in variables
+    var xhr = new XMLHttpRequest();
+    var url = host + "/get_case/" + toString(id);
 
 // Called whenever the readyState attribute changes
-xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
 
-  // Check if fetch request is done
-  if (xhr.readyState == 4 && xhr.status == 200) {
+        // Check if fetch request is done
+        if (xhr.readyState == 4 && xhr.status == 200) {
 
-    // Parse the JSON string
-    var jsonData = JSON.parse(xhr.responseText);
-
-    // Call the showArtists(), passing in the parsed JSON string
-    showArtists(jsonData);
-  }
-};
+            // Parse the JSON string
+            var jsonData = JSON.parse(xhr.responseText);
+            return jsonData;
+        }
+    };
 
 // Do the HTTP call using the url variable we specified above
-xhr.open("GET", url, true);
-xhr.send();
-}*/
+    xhr.open("GET", url, true);
+    xhr.send();
+}
 
 function load_case(id) {
     var cur_case = getCase(id);
     // Only draw case in training modus.
     if (training) {
-        drawPoints(cur_case);
+        // drawPoints(cur_case);
         drawPath(cur_case);
     }
 }

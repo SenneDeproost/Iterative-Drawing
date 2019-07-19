@@ -10,7 +10,7 @@ from os import listdir
 class TrainingSession:
     def __init__(self, participant=None):
         self.participant = participant
-        self.tolerance = 0.25  # Default error tolerance
+        self.tolerance = 500  # Default error tolerance
         self.n_cases = 5  # Default number of test cases
         self.case_dir = "/home/senne/Projects/follow_the_leader/data/cases/"  # Directory for training cases
         self.results = []  # Results of the training session
@@ -41,11 +41,11 @@ class TrainingSession:
 # A TrainingCase consists of several trials the user can do
 class TrainingCase:
     def __init__(self, file_path, tolerance):
-        self.file_path = file_path  # Which case
-        self.trails = 0  # The trials that have been submitted by the user
-        self.errors = 0  # How many times wrong, according to tolerance
-        self.error = None  # What was the error in the last submission
-        self.tolerance = tolerance  # Fault tolerance of the path
+        self.file_path = file_path              # Which case
+        self.trials = []                        # The trials that have been submitted by the user
+        self.errors = 0                         # How many times wrong, according to tolerance
+        self.error = None                       # What was the error in the last submission
+        self.tolerance = tolerance              # Fault tolerance of the path
         self.path = []
 
     # Load the case file and return a list of coordinates for the path.
@@ -56,9 +56,11 @@ class TrainingCase:
         for row in reader:
             self.path.append(json.dumps(row))
 
-    def verify(self, user_input):
+    def try_trial(self, user_input):
         trial = TrainingTrial(self.path, self.tolerance)
         trial.calc_error(user_input)
+        trial.verify()
+        self.trials.append(trial)
 
 
 # Each submitted input is validated in a TrainingTrial.
@@ -90,5 +92,6 @@ class TrainingTrial:
 
     # Verify the gathered results of the trial
     def verify(self):
+        # Negative results are tolerated, positive ones are to high.
         result = self.tolerance - self.error
         return result
