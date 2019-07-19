@@ -102,8 +102,29 @@ function drawPath(case_) {
     setPenSettings();
 }
 
+// https://www.quackit.com/json/tutorial/json_with_http.cfm
 function getCase(id) {
-    return data;
+    // Store XMLHttpRequest and the JSON file location in variables
+var xhr = new XMLHttpRequest();
+var url = "127.0.0.1";
+
+// Called whenever the readyState attribute changes
+xhr.onreadystatechange = function() {
+
+  // Check if fetch request is done
+  if (xhr.readyState == 4 && xhr.status == 200) {
+
+    // Parse the JSON string
+    var jsonData = JSON.parse(xhr.responseText);
+
+    // Call the showArtists(), passing in the parsed JSON string
+    showArtists(jsonData);
+  }
+};
+
+// Do the HTTP call using the url variable we specified above
+xhr.open("GET", url, true);
+xhr.send();
 }
 
 function load_case(id) {
