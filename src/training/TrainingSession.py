@@ -12,7 +12,7 @@ class TrainingSession:
         self.participant = participant
         self.tolerance = 0.25            # Default error tolerance
         self.n_cases = 5                 # Default number of test cases
-        self.caseDir = "./draw_cases"    # Directory for training cases
+        self.caseDir = "/home/senne/Projects/follow_the_leader/data/cases/"    # Directory for training cases
         self.results = []                # Results of the training session
         self.cases = []                  # Initialize with no cases loaded
 
@@ -21,13 +21,15 @@ class TrainingSession:
         if args:
             # If a list of cases is given, load them into the session
             for arg in args:
-                self.cases.append(TrainingCase(arg, self.tolerance).load_case())
+                self.cases.append(TrainingCase(self.caseDir + arg + ".csv", self.tolerance).load_case())
         else:
             # Load random cases
-            for file in random.shuffle(listdir(self.caseDir)):
+            files = listdir(self.caseDir)
+            random.shuffle(files)
+            for file in files:
                 # Load only csv files
                 if file.endswith(".csv"):
-                    self.cases.append(TrainingCase(file, self.tolerance).load_case())
+                    self.cases.append(TrainingCase(self.caseDir + file, self.tolerance).load_case())
                 # Stop after n_cases
                 if len(self.cases) == self.n_cases:
                     break
