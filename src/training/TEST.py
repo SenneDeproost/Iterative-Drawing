@@ -2,5 +2,6 @@ from TrainingSession import *
 
 ses = TrainingSession("Senne")
 ses.load_cases()
-ses.cases
+print(ses.cases)
+
 

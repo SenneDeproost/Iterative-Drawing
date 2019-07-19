@@ -12,7 +12,7 @@ class TrainingSession:
         self.participant = participant
         self.tolerance = 0.25            # Default error tolerance
         self.n_cases = 5                 # Default number of test cases
-        self.caseDir = "/home/senne/Projects/follow_the_leader/data/cases/"    # Directory for training cases
+        self.case_dir = "/home/senne/Projects/follow_the_leader/data/cases/"    # Directory for training cases
         self.results = []                # Results of the training session
         self.cases = []                  # Initialize with no cases loaded
 
@@ -21,42 +21,45 @@ class TrainingSession:
         if args:
             # If a list of cases is given, load them into the session
             for arg in args:
-                self.cases.append(TrainingCase(self.caseDir + arg + ".csv", self.tolerance).load_case())
+                self.cases.append(TrainingCase(self.case_dir + arg + ".csv", self.tolerance))
         else:
             # Load random cases
-            files = listdir(self.caseDir)
+            files = listdir(self.case_dir)
             random.shuffle(files)
             for file in files:
                 # Load only csv files
                 if file.endswith(".csv"):
-                    self.cases.append(TrainingCase(self.caseDir + file, self.tolerance).load_case())
+                    self.cases.append(TrainingCase(self.case_dir + file, self.tolerance))
                 # Stop after n_cases
                 if len(self.cases) == self.n_cases:
                     break
+        # Activate cases
+        for case in self.cases:
+            case.load_case()
 
-    # Get a certain TrainingCase
-    def get_case(self, index):
-        if len(self.cases) - 1 <= index:
-            return self.cases[index]
-        else:
-            raise RuntimeError("Index is out of range in get_case")
+
+    # Start a TrainingCase, including a TrainingTrial.
+    def start_case(self, index):
+        
 
 
 # A TrainingCase consists of several trials the user can do
 class TrainingCase:
-    def __init__(self, case_path, tolerance):
-        self.casePath = case_path       # Which case
-        self.numberOfTrials = 0         # How many times submitted
-        self.numberOfErrors = 0         # How many times wrong, according to tolerance
+    def __init__(self, file_path, tolerance):
+        self.file_path = file_path      # Which case
+        self.n_trails = 0               # How many times submitted
+        self.n_errors = 0               # How many times wrong, according to tolerance
         self.error = None               # What was the error in the last submission
         self.tolerance = tolerance      # Fault tolerance of the path
+        self.path = []
 
     # Load the case file and return a list of coordinates for the path.
     def load_case(self):
-        file = open(self.casePath, 'rU')
+        file = open(self.file_path, 'rU')
         # Map the CSV file onto JSON
-        reader = csv.DictReader(file, fieldnames=("x", "y"))
-        return json.dumps([row for row in reader])
+        reader = csv.DictReader(file)
+        for row in reader:
+            self.path.append(json.dumps(row))
 
 
 # Each submitted input is validated in a TrainingTrial.
