@@ -3,6 +3,7 @@
 var canvas, ctx, painting, paint_style;
 var mouse = {x: 0, y: 0};
 var current_case = 0;
+var training = true;
 
 
 var data = [
@@ -104,7 +105,9 @@ function drawPath(case_) {
 
 // https://www.quackit.com/json/tutorial/json_with_http.cfm
 function getCase(id) {
-    // Store XMLHttpRequest and the JSON file location in variables
+    return data
+}
+/*    // Store XMLHttpRequest and the JSON file location in variables
 var xhr = new XMLHttpRequest();
 var url = "127.0.0.1";
 
@@ -125,12 +128,15 @@ xhr.onreadystatechange = function() {
 // Do the HTTP call using the url variable we specified above
 xhr.open("GET", url, true);
 xhr.send();
-}
+}*/
 
 function load_case(id) {
     var cur_case = getCase(id);
-    drawPoints(cur_case);
-    drawPath(cur_case);
+    // Only draw case in training modus.
+    if (training) {
+        drawPoints(cur_case);
+        drawPath(cur_case);
+    }
 }
 
 

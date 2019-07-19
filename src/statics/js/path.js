@@ -9,12 +9,12 @@ $(window).mousemove(function (e) {
     frames.push(position);
 });
 
-function reset_path() {
+function resetPath() {
     frames = [];
 }
 
 // https://stackoverflow.com/questions/24468459/sending-a-json-to-server-and-retrieving-a-json-in-return-without-jquery
-function send_input() {
+function sendInput() {
 
     var xhr = new XMLHttpRequest();
     var url = "127.0.0.1";
