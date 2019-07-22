@@ -91,7 +91,8 @@ function drawPath(cse) {
 }
 
 // https://www.quackit.com/json/tutorial/json_with_http.cfm
-function getCase(id) {
+// Make a connection with the server an load in the path of the test case.
+function getCase() {
 
     var xhr = new XMLHttpRequest();
     var url = "/training/get_case/";

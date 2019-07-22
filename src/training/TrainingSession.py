@@ -92,7 +92,7 @@ class TrainingTrial:
         for casePoint in self.case_data:
             case_x = casePoint['x']
             case_y = casePoint['y']
-            lowest_distance = None
+            lowest_distance = float("inf")
             for inputPoint in user_input:
                 input_x = inputPoint['x']
                 input_y = inputPoint['y']
