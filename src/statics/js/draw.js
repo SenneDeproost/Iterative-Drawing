@@ -3,7 +3,6 @@
 var canvas, ctx, painting, paint_style;
 var mouse = {x: 0, y: 0};
 var current_case;
-var case_index = 0;
 var training = true;
 var host = window.location.hostname;
 
@@ -19,7 +18,7 @@ window.onload = function () {
     paint_style = getComputedStyle(painting);
 
     setPenSettings();
-    path = getCase(case_index);
+    path = getCase();
 
     // Add eventListeners to the canvas
     // Moving mouse
@@ -42,7 +41,7 @@ window.onload = function () {
     }, false);
 
 
-    getCase(case_index);
+    getCase();
 
 };
 
@@ -95,7 +94,7 @@ function drawPath(cse) {
 function getCase(id) {
 
     var xhr = new XMLHttpRequest();
-    var url = "/training/get_case/" + String(id);
+    var url = "/training/get_case/";
 
 // Called whenever the readyState attribute changes
     xhr.onreadystatechange = function () {

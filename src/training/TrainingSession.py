@@ -15,6 +15,7 @@ class TrainingSession:
         self.case_dir = "/home/senne/Projects/follow_the_leader/data/cases/"  # Directory for training cases
         self.results = []  # Results of the training session
         self.cases = []  # Initialize with no cases loaded
+        self.current_index = 0
 
     # Load TrainingCases
     def load_cases(self, *args):
@@ -38,6 +39,11 @@ class TrainingSession:
         for case in self.cases:
             case.load_case()
 
+    # Return current case
+    def current_case(self):
+        return self.cases[self.current_index]
+
+
 
 # A TrainingCase consists of several trials the user can do
 class TrainingCase:
@@ -60,11 +66,13 @@ class TrainingCase:
             self.path.append(row)
             # self.path.append(json.dumps(row))  # To stringify the JSON object
 
+    # Generate a trial, calculate error with user input and verify the result. Afterwards, collect it under trials.
     def try_trial(self, user_input):
         trial = TrainingTrial(self.path, self.tolerance)
         trial.calc_error(user_input)
-        trial.verify()
+        res = trial.verify()
         self.trials.append(trial)
+        return res
 
 
 # Each submitted input is validated in a TrainingTrial.
@@ -79,7 +87,7 @@ class TrainingTrial:
     def calc_error(self, user_input):
         distances = []
         # Load JSON into list
-        user_input = json.loads(user_input)
+        #user_input = json.loads(user_input)
         # Check distance error for every point in case path
         for casePoint in self.case_data:
             case_x = casePoint['x']

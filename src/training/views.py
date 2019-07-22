@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 from .TrainingSession import *
 
 import time
+import json
 
 # Global variable for the TrainingSession object.
 training_ses = None
@@ -20,13 +22,19 @@ def training(request):
 
 
 # Call for training case path in JSON format.
-def get_case(request, index=0):
-    cur_case = training_ses.cases[index]
+def get_case(request):
+    cur_case = training_ses.current_case()
     path = cur_case.path
     return JsonResponse(path, safe=False)
 
 
+@csrf_exempt
 # To do when the user submits input: extract, verify and judge the data.
 def post_case(request):
     if request.method == 'POST':
-        print("Ontvangen die handel!")
+        user_input = json.loads(request.body)
+        case = training_ses.current_case()
+        res = case.try_trial(user_input)
+        print(res)
+
+
