@@ -11,7 +11,7 @@ class TrainingSession:
     def __init__(self, participant=None):
         self.participant = participant
         self.tolerance = 500  # Default error tolerance
-        self.n_cases = 5  # Default number of test cases
+        self.n_cases = 2  # Default number of test cases
         self.case_dir = "/home/senne/Projects/follow_the_leader/data/cases/"  # Directory for training cases
         self.results = []  # Results of the training session
         self.cases = []  # Initialize with no cases loaded
@@ -23,11 +23,12 @@ class TrainingSession:
             for arg in args:
                 self.cases.append(TrainingCase(self.case_dir + arg + ".csv", self.tolerance))
         else:
-            # Load random cases
+            # Load random cases, limited by n_cases
             files = listdir(self.case_dir)
             random.shuffle(files)
+            files = files[:self.n_cases]
             for file in files:
-                # Load only csv files
+                # Load csv files
                 if file.endswith(".csv"):
                     self.cases.append(TrainingCase(self.case_dir + file, self.tolerance))
                 # Stop after n_cases
@@ -54,7 +55,9 @@ class TrainingCase:
         # Map the CSV file onto JSON
         reader = csv.DictReader(file)
         for row in reader:
-            self.path.append(json.dumps(row))
+            self.path.append(row)
+            # self.path.append(json.dumps(row))  # To stringify the JSON object
+        print(self.path)
 
     def try_trial(self, user_input):
         trial = TrainingTrial(self.path, self.tolerance)

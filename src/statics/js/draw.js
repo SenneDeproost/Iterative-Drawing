@@ -2,29 +2,13 @@
 
 var canvas, ctx, painting, paint_style;
 var mouse = {x: 0, y: 0};
-var current_case = 0;
+var current_case;
+var case_index = 0;
 var training = true;
 var host = window.location.hostname;
 
 // Default
-var path = [
-    {
-        "x": 20,
-        "y": 20
-    },
-    {
-        "x": 80,
-        "y": 20
-    },
-    {
-        "x": 200,
-        "y": 200
-    },
-    {
-        "x": 700,
-        "y": 400
-    }
-];
+var path = [];
 
 // When the page is done loading, get the necessary elements of the page and load the drawing application
 window.onload = function () {
@@ -35,6 +19,7 @@ window.onload = function () {
     paint_style = getComputedStyle(painting);
 
     setPenSettings();
+    path = getCase(case_index);
 
     // Add eventListeners to the canvas
     // Moving mouse
@@ -57,7 +42,7 @@ window.onload = function () {
     }, false);
 
 
-    load_case(current_case);
+    load_case(case_index);
 
 };
 
@@ -81,13 +66,13 @@ function clearCanvas() {
     load_case(current_case);
 }
 
-function drawPoints(case_) {
-    for (i = 0; i < case_.length; i++) {
-        ctx.fillRect(case_[i].x - 10, case_[i].y - 10, 20, 20);
+function drawPoints(cse) {
+    for (i = 0; i < cse.length; i++) {
+        ctx.fillRect(cse[i].x - 10, cse[i].y - 10, 20, 20);
     }
 }
 
-function drawPath(case_) {
+function drawPath(cse) {
     // Settings of ctx
     ctx.lineWidth = 10;
     ctx.lineJoin = 'square';
@@ -96,9 +81,9 @@ function drawPath(case_) {
 
 
     ctx.beginPath();
-    ctx.moveTo(case_[0].x, case_[0].y);
-    for (i = 1; i < case_.length; i++) {
-        ctx.lineTo(case_[i].x, case_[i].y);
+    ctx.moveTo(cse[0].x, cse[0].y);
+    for (i = 1; i < cse.length; i++) {
+        ctx.lineTo(cse[i].x, cse[i].y);
     }
     ctx.stroke();
     setPenSettings();
@@ -108,7 +93,7 @@ function drawPath(case_) {
 function getCase(id) {
     // Store XMLHttpRequest and the JSON file location in variables
     var xhr = new XMLHttpRequest();
-    var url = host + "/get_case/" + toString(id);
+    var url = "/training/get_case/" + String(id);
 
 // Called whenever the readyState attribute changes
     xhr.onreadystatechange = function () {
@@ -117,8 +102,7 @@ function getCase(id) {
         if (xhr.readyState == 4 && xhr.status == 200) {
 
             // Parse the JSON string
-            var jsonData = JSON.parse(xhr.responseText);
-            return jsonData;
+            return JSON.parse(xhr.responseText);
         }
     };
 
@@ -128,11 +112,11 @@ function getCase(id) {
 }
 
 function load_case(id) {
-    var cur_case = getCase(id);
-    // Only draw case in training modus.
+    var cse = getCase(id);
+    // Only draw case in training mode.
     if (training) {
         // drawPoints(cur_case);
-        drawPath(cur_case);
+        drawPath(cse);
     }
 }
 
