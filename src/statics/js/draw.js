@@ -42,7 +42,7 @@ window.onload = function () {
     }, false);
 
 
-    //load_case(case_index);
+    getCase(case_index);
 
 };
 
@@ -79,23 +79,19 @@ function drawPath(cse) {
     ctx.lineCap = 'square';
     ctx.strokeStyle = 'black';
 
-
     ctx.beginPath();
     ctx.moveTo(cse[0].x, cse[0].y);
+    console.log(cse[1]);
     for (i = 1; i < cse.length; i++) {
         ctx.lineTo(cse[i].x, cse[i].y);
     }
     ctx.stroke();
+
     setPenSettings();
 }
 
 // https://www.quackit.com/json/tutorial/json_with_http.cfm
 function getCase(id) {
-
-    function result(request){
-        return request
-    }
-
 
     // Store XMLHttpRequest and the JSON file location in variables
     var xhr = new XMLHttpRequest();
@@ -108,7 +104,7 @@ function getCase(id) {
         if (xhr.readyState == 4 && xhr.status == 200) {
 
             // Parse the JSON string
-            path = JSON.parse(xhr.responseText);
+            loadCase(JSON.parse(xhr.responseText));
         }
     };
 
@@ -118,13 +114,11 @@ function getCase(id) {
 
 }
 
-async function load_case(id) {
-    getCase(id);
-   // console.log(cse);
-    // Only draw case in training mode.
+
+function loadCase(path_data) {
+    path = path_data;
     if (training) {
-        // drawPoints(cur_case);
-        drawPath(path);
+        drawPath(path_data);
     }
 }
 
