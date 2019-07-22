@@ -55,8 +55,9 @@ class TrainingCase:
         # Map the CSV file onto JSON
         reader = csv.DictReader(file)
         for row in reader:
+            row['x'] = int(row['x'])
+            row['y'] = int(row['y'])
             self.path.append(row)
-            print(row)
             # self.path.append(json.dumps(row))  # To stringify the JSON object
 
     def try_trial(self, user_input):
