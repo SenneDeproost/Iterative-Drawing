@@ -42,7 +42,7 @@ window.onload = function () {
     }, false);
 
 
-    load_case(case_index);
+    //load_case(case_index);
 
 };
 
@@ -91,6 +91,12 @@ function drawPath(cse) {
 
 // https://www.quackit.com/json/tutorial/json_with_http.cfm
 function getCase(id) {
+
+    function result(request){
+        return request
+    }
+
+
     // Store XMLHttpRequest and the JSON file location in variables
     var xhr = new XMLHttpRequest();
     var url = "/training/get_case/" + String(id);
@@ -102,22 +108,23 @@ function getCase(id) {
         if (xhr.readyState == 4 && xhr.status == 200) {
 
             // Parse the JSON string
-            return JSON.parse(xhr.responseText);
+            path = JSON.parse(xhr.responseText);
         }
     };
 
 // Do the HTTP call using the url variable we specified above
     xhr.open("GET", url, true);
     xhr.send();
+
 }
 
-function load_case(id) {
-    var cse = getCase(id);
+async function load_case(id) {
+    getCase(id);
+   // console.log(cse);
     // Only draw case in training mode.
     if (training) {
         // drawPoints(cur_case);
-        drawPath(cse);
+        drawPath(path);
     }
 }
-
 

@@ -57,7 +57,6 @@ class TrainingCase:
         for row in reader:
             self.path.append(row)
             # self.path.append(json.dumps(row))  # To stringify the JSON object
-        print(self.path)
 
     def try_trial(self, user_input):
         trial = TrainingTrial(self.path, self.tolerance)
