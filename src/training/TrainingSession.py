@@ -43,6 +43,12 @@ class TrainingSession:
     def current_case(self):
         return self.cases[self.current_index]
 
+    # Got to the next case
+    def next_case(self):
+        next = self.current_index + 1
+        self.current_index = next
+        return not next == self.n_cases
+
 
 
 # A TrainingCase consists of several trials the user can do
@@ -87,7 +93,7 @@ class TrainingTrial:
     def calc_error(self, user_input):
         distances = []
         # Load JSON into list
-        #user_input = json.loads(user_input)
+        # user_input = json.loads(user_input)
         # Check distance error for every point in case path
         for casePoint in self.case_data:
             case_x = casePoint['x']
