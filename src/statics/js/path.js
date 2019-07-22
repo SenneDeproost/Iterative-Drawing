@@ -1,6 +1,7 @@
 // Inspired by https://codepen.io/jakebown/pen/weoVxg
 
 var frames = [];
+var host = window.location.hostname;
 
 // Record mouse movements
 $(window).mousemove(function (e) {
@@ -9,18 +10,20 @@ $(window).mousemove(function (e) {
     frames.push(position);
 });
 
-function resetPath() {
+function resetPathRecord() {
     frames = [];
 }
 
 // https://stackoverflow.com/questions/24468459/sending-a-json-to-server-and-retrieving-a-json-in-return-without-jquery
 function sendInput() {
 
+    var data = JSON.stringify(frames);
+
     var xhr = new XMLHttpRequest();
-    var url = "127.0.0.1";
+    var url = "/training/post_case/";
+
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
-    var data = JSON.stringify(frames);
     xhr.send(data);
 }
 

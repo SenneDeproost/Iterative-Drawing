@@ -2,7 +2,7 @@
   {
     "action": "left",
     "file": "left.csv"
-  }
+  },
   {
     "action": "right",
     "file": "right.csv"

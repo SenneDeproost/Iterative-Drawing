@@ -30,7 +30,7 @@ window.onload = function () {
 
     // Mouse press
     canvas.addEventListener('mousedown', function (e) {
-        //clearCanvas();
+        //resetCanvas();
         ctx.beginPath();
         ctx.moveTo(mouse.x, mouse.y);
         canvas.addEventListener('mousemove', onPaint, false);
@@ -61,9 +61,11 @@ function onPaint() {
     ctx.stroke();
 }
 
-function clearCanvas() {
+function resetCanvas() {
+    // Clear the canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    load_case(current_case);
+    // Redraw the path
+    drawPath(path);
 }
 
 function drawPoints(cse) {
@@ -81,7 +83,6 @@ function drawPath(cse) {
 
     ctx.beginPath();
     ctx.moveTo(cse[0].x, cse[0].y);
-    console.log(cse[1]);
     for (i = 1; i < cse.length; i++) {
         ctx.lineTo(cse[i].x, cse[i].y);
     }
@@ -93,7 +94,6 @@ function drawPath(cse) {
 // https://www.quackit.com/json/tutorial/json_with_http.cfm
 function getCase(id) {
 
-    // Store XMLHttpRequest and the JSON file location in variables
     var xhr = new XMLHttpRequest();
     var url = "/training/get_case/" + String(id);
 
