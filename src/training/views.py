@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from .TrainingSession import *
@@ -36,5 +36,6 @@ def post_case(request):
         case = training_ses.current_case()
         res = case.try_trial(user_input)
         print(res)
+        return HttpResponse(res, content_type="text/plain")
 
 

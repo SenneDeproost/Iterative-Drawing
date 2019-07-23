@@ -18,7 +18,6 @@ window.onload = function () {
     paint_style = getComputedStyle(painting);
 
     setPenSettings();
-    path = getCase();
 
     // Add eventListeners to the canvas
     // Moving mouse

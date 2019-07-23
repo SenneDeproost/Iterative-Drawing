@@ -10,19 +10,19 @@ from os import listdir
 class TrainingSession:
     def __init__(self, participant=None):
         self.participant = participant
-        self.tolerance = 500  # Default error tolerance
-        self.n_cases = 2  # Default number of test cases
+        self.tolerance = 500         # Default error tolerance
+        self.n_cases = 2             # Default number of test cases
         self.case_dir = "/home/senne/Projects/follow_the_leader/data/cases/"  # Directory for training cases
-        self.results = []  # Results of the training session
-        self.cases = []  # Initialize with no cases loaded
-        self.current_index = 0
+        self.results = []            # Results of the training session
+        self.cases = []              # Initialize with no cases loaded
+        self.current_index = 0        # Index of the set of cases
 
     # Load TrainingCases
     def load_cases(self, *args):
         if args:
             # If a list of cases is given, load them into the session
             for arg in args:
-                self.cases.append(TrainingCase(self.case_dir + arg + ".csv", self.tolerance))
+                self.cases.append(TrainingCase(self, self.case_dir + arg + ".csv", self.tolerance))
         else:
             # Load random cases, limited by n_cases
             files = listdir(self.case_dir)
@@ -31,7 +31,7 @@ class TrainingSession:
             for file in files:
                 # Load csv files
                 if file.endswith(".csv"):
-                    self.cases.append(TrainingCase(self.case_dir + file, self.tolerance))
+                    self.cases.append(TrainingCase(self, self.case_dir + file, self.tolerance))
                 # Stop after n_cases
                 if len(self.cases) == self.n_cases:
                     break
@@ -45,21 +45,23 @@ class TrainingSession:
 
     # Got to the next case
     def next_case(self):
-        next = self.current_index + 1
-        self.current_index = next
-        return not next == self.n_cases
+        nxt = self.current_index + 1
+        self.current_index = nxt
+        # Return false if the next case does not exists
+        return not nxt == self.n_cases
 
 
 
 # A TrainingCase consists of several trials the user can do
 class TrainingCase:
-    def __init__(self, file_path, tolerance):
+    def __init__(self, session, file_path, tolerance):
         self.file_path = file_path              # Which case
         self.trials = []                        # The trials that have been submitted by the user
         self.errors = 0                         # How many times wrong, according to tolerance
         self.error = None                       # What was the error in the last submission
         self.tolerance = tolerance              # Fault tolerance of the path
         self.path = []
+        self.session = session
 
     # Load the case file and return a list of coordinates for the path.
     def load_case(self):
@@ -78,7 +80,14 @@ class TrainingCase:
         trial.calc_error(user_input)
         res = trial.verify()
         self.trials.append(trial)
-        return res
+        if res == "tolerated":
+            if not self.session.next_case():
+                return "session done"
+            else:
+                return res
+        else:
+            return res
+
 
 
 # Each submitted input is validated in a TrainingTrial.
@@ -110,6 +119,8 @@ class TrainingTrial:
 
     # Verify the gathered results of the trial
     def verify(self):
-        # Negative results are tolerated, positive ones are to high.
         result = self.tolerance - self.error
-        return result
+        if result >= 0:
+            return "tolerated"
+        else:
+            return "not tolerated"

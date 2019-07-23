@@ -25,6 +25,14 @@ function sendInput() {
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(data);
+    xhr.onreadystatechange = function(){
+         // Check if fetch request is done
+        if (xhr.readyState == 4 && xhr.status == 200) {
+
+            // Can we go to the next case, do we have to retry or is the session over?
+        }
+
+                                        };
 }
 
 
