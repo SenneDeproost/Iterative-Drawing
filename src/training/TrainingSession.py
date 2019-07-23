@@ -24,14 +24,14 @@ class TrainingSession:
         if args:
             # If a list of cases is given, load them into the session
             for arg in args:
-                self.cases.append(TrainingCase(self, self.case_dir + actions[arg][0], self.tolerance))
+                self.cases.append(TrainingCase(self, arg, self.case_dir + actions[arg][0], self.tolerance))
         else:
             # Chose actions from case_dir, according to actions dictionary
             action_names = actions.keys()
             files = []
             # For every name of action in the dictionary
             for name in action_names:
-                files.append(TrainingCase(self, self.case_dir + actions[name][0], self.tolerance))
+                files.append(TrainingCase(self, name, self.case_dir + actions[name][0], self.tolerance))
                 # Stop after n_cases
                 if len(self.cases) == self.n_cases:
                     break
@@ -55,10 +55,20 @@ class TrainingSession:
         else:
             return False
 
+    # Return JSON with action of the case and the associated path.
+    def get_case(self):
+        cse = self.current_case()
+        obj = {
+            "action": cse.name,
+            "path": cse.path
+        }
+        return obj
+
+
 
 # A TrainingCase consists of several trials the user can do
 class TrainingCase:
-    def __init__(self, session, file_path, tolerance):
+    def __init__(self, session, action, file_path, tolerance):
         self.file_path = file_path  # Which case
         self.trials = []  # The trials that have been submitted by the user
         self.errors = 0  # How many times wrong, according to tolerance
@@ -66,6 +76,7 @@ class TrainingCase:
         self.tolerance = tolerance  # Fault tolerance of the path
         self.path = []
         self.session = session
+        self.action = action
 
     # Load the case file and return a list of coordinates for the path.
     def load_case(self):
