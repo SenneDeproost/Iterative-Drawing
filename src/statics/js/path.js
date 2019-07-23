@@ -44,6 +44,9 @@ function handleRes(response) {
             break;
         case "session done":
             alert("Training session is complete");
+            if (testing){
+                window.location.href = "/testing/";
+            }
             break;
         default:
             break;

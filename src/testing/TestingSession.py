@@ -4,33 +4,33 @@ import math
 import random
 
 
-# A training session consists of several training cases. These cases are randomly drawn from the case directory or can
+# A testing session consists of several testing cases. These cases are randomly drawn from the case directory or can
 # specified as a list of case files.
-class TrainingSession:
+class TestingSession:
     def __init__(self, participant=None):
         self.participant = participant
         self.tolerance = 500  # Default error tolerance
         self.n_cases = 2  # Default number of test cases
-        self.case_dir = "/home/senne/Projects/follow_the_leader/data/cases/"  # Directory for training cases
-        self.results = []  # Results of the training session
+        self.case_dir = "/home/senne/Projects/follow_the_leader/data/cases/"  # Directory for testing cases
+        self.results = []  # Results of the testing session
         self.cases = []  # Initialize with no cases loaded
         self.current_index = 0  # Index of the set of cases
 
-    # Load TrainingCases
+    # Load TestingCases
     def load_cases(self, *args):
         # Load actions.json
         actions = json.load(open(self.case_dir + "actions.json"))
         if args:
             # If a list of cases is given, load them into the session
             for arg in args:
-                self.cases.append(TrainingCase(self, arg, self.case_dir + actions[arg][0], self.tolerance))
+                self.cases.append(TestingCase(self, arg, self.case_dir + actions[arg][0], self.tolerance))
         else:
             # Chose actions from case_dir, according to actions dictionary
             action_names = actions.keys()
             files = []
             # For every name of action in the dictionary
             for name in action_names:
-                files.append(TrainingCase(self, name, self.case_dir + actions[name][0], self.tolerance))
+                files.append(TestingCase(self, name, self.case_dir + actions[name][0], self.tolerance))
                 # Stop after n_cases
                 if len(self.cases) == self.n_cases:
                     break
@@ -64,8 +64,8 @@ class TrainingSession:
         return obj
 
 
-# A TrainingCase consists of several trials the user can do
-class TrainingCase:
+# A TestingCase consists of several trials the user can do
+class TestingCase:
     def __init__(self, session, action, file_path, tolerance):
         self.file_path = file_path  # Which case
         self.trials = []  # The trials that have been submitted by the user
@@ -89,7 +89,7 @@ class TrainingCase:
 
     # Generate a trial, calculate error with user input and verify the result. Afterwards, collect it under trials.
     def try_trial(self, user_input):
-        trial = TrainingTrial(self.path, self.tolerance)
+        trial = TestingTrial(self.path, self.tolerance)
         trial.calc_error(user_input)
         res = trial.verify()
         self.trials.append(trial)
@@ -102,8 +102,8 @@ class TrainingCase:
             return res
 
 
-# Each submitted input is validated in a TrainingTrial.
-class TrainingTrial:
+# Each submitted input is validated in a TestingTrial.
+class TestingTrial:
     def __init__(self, case_data, tolerance):
         self.case_data = case_data
         self.tolerance = tolerance

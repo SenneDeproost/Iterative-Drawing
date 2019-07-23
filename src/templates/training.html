@@ -23,16 +23,17 @@
     <script src="{% static "js/path.js" %}"></script>
     {% comment %} <script src="../statics/js/draw.js"></script>
       <script src="../statics/js/path.js"></script>{% endcomment %}
+    <script>training = true;</script>
 </head>
 <body>
 <div id="canvasDiv">
-    <p>Draw the symbol for</p> <p id="actionToPerform"> </p>
+    <p>Draw the symbol for</p>
+    <p id="actionToPerform"></p>
     <canvas id="canvas" width="800" height="800"></canvas>
 </div>
 <div id="controls">
     <button type="button" onclick="drawCase(); resetPathRecord()">Redo</button>
     <button type="button" onclick="sendInput(); resetPathRecord(); getCase()">Submit</button>
-
 </div>
 </body>
 </html>

@@ -63,7 +63,7 @@ function setPenSettings() {
 function drawCase() {
     // Clear the canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
- // Draw path when in training mode
+    // Draw path when in training mode
     if (training) {
         drawPath(path);
     }
@@ -112,7 +112,7 @@ function getCase() {
 }
 
 // Change action displayed next to canvas.
-function setAction(action){
+function setAction(action) {
     document.getElementById("actionToPerform").innerHTML = action;
 }
 
