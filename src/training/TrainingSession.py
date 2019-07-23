@@ -1,6 +1,7 @@
 import csv
 import math
 import random
+import json
 from os import listdir
 
 
@@ -10,7 +11,7 @@ class TrainingSession:
     def __init__(self, participant=None):
         self.participant = participant
         self.tolerance = 500  # Default error tolerance
-        self.n_cases = 3  # Default number of test cases
+        self.n_cases = 2  # Default number of test cases
         self.case_dir = "/home/senne/Projects/follow_the_leader/data/cases/"  # Directory for training cases
         self.results = []  # Results of the training session
         self.cases = []  # Initialize with no cases loaded
@@ -18,25 +19,25 @@ class TrainingSession:
 
     # Load TrainingCases
     def load_cases(self, *args):
+        # Load actions.json
+        actions = json.load(open(self.case_dir + "actions.json"))
         if args:
             # If a list of cases is given, load them into the session
             for arg in args:
-                self.cases.append(TrainingCase(self, self.case_dir + arg + ".csv", self.tolerance))
+                self.cases.append(TrainingCase(self, self.case_dir + actions[arg][0], self.tolerance))
         else:
-            files = listdir(self.case_dir)
-            # Filter on CSV format.
-            files = list(filter(lambda f: f.endswith(".csv"), files))
-            # Random shuffle files
-            random.shuffle(files)
-            # Only load n_cases
-            files = files[:self.n_cases]
-            # Add to cases
-            for file in files:
-                # Load csv files
-                self.cases.append(TrainingCase(self, self.case_dir + file, self.tolerance))
+            # Chose actions from case_dir, according to actions dictionary
+            action_names = actions.keys()
+            files = []
+            # For every name of action in the dictionary
+            for name in action_names:
+                files.append(TrainingCase(self, self.case_dir + actions[name][0], self.tolerance))
                 # Stop after n_cases
                 if len(self.cases) == self.n_cases:
                     break
+            # Random shuffle files
+            random.shuffle(files)
+            self.cases = files
         # Activate cases
         for case in self.cases:
             case.load_case()
