@@ -59,17 +59,13 @@ function setPenSettings() {
 }
 
 // Reset canvas is used when a user wants to redo its input.
-function resetCanvas() {
+function drawCase() {
     // Clear the canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    // Redraw the path
-    drawPath(path);
-}
-
-// Can be called when going to the next case in the session or during a case for reset.
-function reloadPath(){
-    getCase();
-    resetCanvas();
+ // Draw path when in training mode
+    if (training) {
+        drawPath(path);
+    }
 }
 
 // Draw path function
@@ -118,9 +114,6 @@ function getCase() {
 // this path in training mode.
 function loadCase(path_data) {
     path = path_data;
-    // Draw path when in training mode
-    if (training) {
-        drawPath(path_data);
-    }
+    drawCase(path_data);
 }
 

@@ -23,21 +23,23 @@ class TrainingSession:
             for arg in args:
                 self.cases.append(TrainingCase(self, self.case_dir + arg + ".csv", self.tolerance))
         else:
-            # Load random cases, limited by n_cases
             files = listdir(self.case_dir)
+            # Filter on CSV format.
+            files = list(filter(lambda f: f.endswith(".csv"), files))
+            # Random shuffle files
             random.shuffle(files)
+            # Only load n_cases
             files = files[:self.n_cases]
+            # Add to cases
             for file in files:
                 # Load csv files
-                if file.endswith(".csv"):
-                    self.cases.append(TrainingCase(self, self.case_dir + file, self.tolerance))
+                self.cases.append(TrainingCase(self, self.case_dir + file, self.tolerance))
                 # Stop after n_cases
                 if len(self.cases) == self.n_cases:
                     break
         # Activate cases
         for case in self.cases:
             case.load_case()
-            print(case.path)
 
     # Return current case
     def current_case(self):
@@ -45,13 +47,12 @@ class TrainingSession:
 
     # Got to the next case
     def next_case(self):
-        # Calculate next index
-        nxt = self.current_index + 1
-        # Prevent out of range
-        if nxt < self.n_cases:
-            self.current_index = nxt
-        # Return false if the next case does not exists
-        return not nxt == self.n_cases
+        # If the current index is the last element of the set of cases
+        if self.current_index < self.n_cases - 1:
+            self.current_index = self.current_index + 1
+            return True
+        else:
+            return False
 
 
 # A TrainingCase consists of several trials the user can do
