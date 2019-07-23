@@ -2,12 +2,17 @@
 
 var canvas, ctx, painting, paint_style;
 var mouse = {x: 0, y: 0};
-var current_case;
 var training = true;
 var host = window.location.hostname;
 
 // Default
 var path = [];
+
+// Draw
+function onPaint() {
+    ctx.lineTo(mouse.x, mouse.y);
+    ctx.stroke();
+}
 
 // When the page is done loading, get the necessary elements of the page and load the drawing application
 window.onload = function () {
@@ -44,8 +49,7 @@ window.onload = function () {
 
 };
 
-///////////////////////////////
-
+// Set pen settings for the drawing part of the session.
 function setPenSettings() {
     // Settings of ctx
     ctx.lineWidth = 30;
@@ -54,11 +58,7 @@ function setPenSettings() {
     ctx.strokeStyle = '#00CC99';
 }
 
-function onPaint() {
-    ctx.lineTo(mouse.x, mouse.y);
-    ctx.stroke();
-}
-
+// Reset canvas is used when a user wants to redo its input.
 function resetCanvas() {
     // Clear the canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -66,12 +66,13 @@ function resetCanvas() {
     drawPath(path);
 }
 
-function drawPoints(cse) {
-    for (i = 0; i < cse.length; i++) {
-        ctx.fillRect(cse[i].x - 10, cse[i].y - 10, 20, 20);
-    }
+// Can be called when going to the next case in the session or during a case for reset.
+function reloadPath(){
+    getCase();
+    resetCanvas();
 }
 
+// Draw path function
 function drawPath(cse) {
     // Settings of ctx
     ctx.lineWidth = 10;
@@ -113,9 +114,11 @@ function getCase() {
 
 }
 
-
+// Load case is used as callback function for getCase. It assigns the case path to the global variable path and draws
+// this path in training mode.
 function loadCase(path_data) {
     path = path_data;
+    // Draw path when in training mode
     if (training) {
         drawPath(path_data);
     }

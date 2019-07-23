@@ -22,18 +22,32 @@ function sendInput() {
     var xhr = new XMLHttpRequest();
     var url = "/training/post_case/";
 
+    xhr.onreadystatechange = function () {
+        // Check if fetch request is done
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            // Handle answer from server
+            handleRes(xhr.responseText);
+        }
+
+    };
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(data);
-    xhr.onreadystatechange = function(){
-         // Check if fetch request is done
-        if (xhr.readyState == 4 && xhr.status == 200) {
-
-            // Can we go to the next case, do we have to retry or is the session over?
-        }
-
-                                        };
 }
 
+function handleRes(response) {
+    // Can we go to the next case, do we have to retry or is the session over?
+    switch (response) {
+        case "tolerated":
+            break;
+        case "not tolerated":
+            break;
+        case "session done":
+            alert("Training session is complete");
+            break;
+        default:
+            break;
+    }
+}
 
 var record = true;

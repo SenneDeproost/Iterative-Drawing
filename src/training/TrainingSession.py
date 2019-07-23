@@ -1,5 +1,4 @@
 import csv
-import json
 import math
 import random
 from os import listdir
@@ -10,12 +9,12 @@ from os import listdir
 class TrainingSession:
     def __init__(self, participant=None):
         self.participant = participant
-        self.tolerance = 500         # Default error tolerance
-        self.n_cases = 2             # Default number of test cases
+        self.tolerance = 500  # Default error tolerance
+        self.n_cases = 3  # Default number of test cases
         self.case_dir = "/home/senne/Projects/follow_the_leader/data/cases/"  # Directory for training cases
-        self.results = []            # Results of the training session
-        self.cases = []              # Initialize with no cases loaded
-        self.current_index = 0        # Index of the set of cases
+        self.results = []  # Results of the training session
+        self.cases = []  # Initialize with no cases loaded
+        self.current_index = 0  # Index of the set of cases
 
     # Load TrainingCases
     def load_cases(self, *args):
@@ -38,6 +37,7 @@ class TrainingSession:
         # Activate cases
         for case in self.cases:
             case.load_case()
+            print(case.path)
 
     # Return current case
     def current_case(self):
@@ -51,15 +51,14 @@ class TrainingSession:
         return not nxt == self.n_cases
 
 
-
 # A TrainingCase consists of several trials the user can do
 class TrainingCase:
     def __init__(self, session, file_path, tolerance):
-        self.file_path = file_path              # Which case
-        self.trials = []                        # The trials that have been submitted by the user
-        self.errors = 0                         # How many times wrong, according to tolerance
-        self.error = None                       # What was the error in the last submission
-        self.tolerance = tolerance              # Fault tolerance of the path
+        self.file_path = file_path  # Which case
+        self.trials = []  # The trials that have been submitted by the user
+        self.errors = 0  # How many times wrong, according to tolerance
+        self.error = None  # What was the error in the last submission
+        self.tolerance = tolerance  # Fault tolerance of the path
         self.path = []
         self.session = session
 
@@ -89,7 +88,6 @@ class TrainingCase:
             return res
 
 
-
 # Each submitted input is validated in a TrainingTrial.
 class TrainingTrial:
     def __init__(self, case_data, tolerance):
@@ -101,8 +99,6 @@ class TrainingTrial:
     # coordinates.
     def calc_error(self, user_input):
         distances = []
-        # Load JSON into list
-        # user_input = json.loads(user_input)
         # Check distance error for every point in case path
         for casePoint in self.case_data:
             case_x = casePoint['x']
