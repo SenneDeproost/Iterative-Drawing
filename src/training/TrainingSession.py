@@ -45,8 +45,11 @@ class TrainingSession:
 
     # Got to the next case
     def next_case(self):
+        # Calculate next index
         nxt = self.current_index + 1
-        self.current_index = nxt
+        # Prevent out of range
+        if nxt < self.n_cases:
+            self.current_index = nxt
         # Return false if the next case does not exists
         return not nxt == self.n_cases
 
