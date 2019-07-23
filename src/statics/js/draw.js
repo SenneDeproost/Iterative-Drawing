@@ -7,6 +7,7 @@ var host = window.location.hostname;
 
 // Default
 var path = [];
+var action;
 
 // Draw
 function onPaint() {
@@ -110,10 +111,17 @@ function getCase() {
 
 }
 
+// Change action displayed next to canvas.
+function setAction(action){
+    document.getElementById("actionToPerform").innerHTML = action;
+}
+
 // Load case is used as callback function for getCase. It assigns the case path to the global variable path and draws
 // this path in training mode.
-function loadCase(path_data) {
-    path = path_data;
-    drawCase(path_data);
+function loadCase(data) {
+    path = data.path;
+    action = data.action;
+    drawCase(path);
+    setAction(action);
 }
 

@@ -59,7 +59,7 @@ class TrainingSession:
     def get_case(self):
         cse = self.current_case()
         obj = {
-            "action": cse.name,
+            "action": cse.action,
             "path": cse.path
         }
         return obj

@@ -23,9 +23,8 @@ def training(request):
 
 # Call for training case path in JSON format.
 def get_case(request):
-    cur_case = training_ses.current_case()
-    path = cur_case.get_case()
-    return JsonResponse(path, safe=False)
+    case = training_ses.get_case()
+    return JsonResponse(case, safe=False)
 
 
 @csrf_exempt
