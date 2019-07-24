@@ -16,9 +16,6 @@ def testing(request):
     testing_ses = TestingSession(str(time.time()))
     # Load all testing cases into the TestingSession class
     testing_ses.load_cases()
-    print("-TESTING--------------------------------------------")
-    print(testing_ses.cases)
-    print("----------------------------------------------------")
     # Render the page
     return render(request, 'testing.html')
 

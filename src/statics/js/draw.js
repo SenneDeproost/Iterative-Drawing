@@ -92,7 +92,7 @@ function drawPath(cse) {
 function getCase() {
 
     var xhr = new XMLHttpRequest();
-    var url = window.location.href + "/get_case/";
+    var url = window.location.href + "get_case/";
 
 // Called whenever the readyState attribute changes
     xhr.onreadystatechange = function () {

@@ -20,7 +20,7 @@ function sendInput() {
     var data = JSON.stringify(frames);
 
     var xhr = new XMLHttpRequest();
-    var url = window.location.href + "/post_case/";
+    var url = window.location.href + "post_case/";
 
     xhr.onreadystatechange = function () {
         // Check if fetch request is done
