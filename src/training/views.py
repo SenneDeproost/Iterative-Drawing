@@ -4,16 +4,24 @@ from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
-from .TrainingSession import *
+import sys
+import os
+import json
+
+PACKAGE_PARENT = '..'
+SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), os.path.expanduser(__file__))))
+sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
+
+from Experiment import experiment
 
 # Global variable for the TrainingSession object.
-training_ses = None
+training_ses = experiment.training
 
 
 # When training is loaded, create a new TrainingSession.
 def training(request):
     global training_ses
-    training_ses = TrainingSession(str(time.time()))
+   # training_ses = TrainingSession(str(time.time()))
     # Load all training cases into the TrainingSession class
     training_ses.load_cases()
     # Render the page

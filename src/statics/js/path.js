@@ -46,8 +46,7 @@ function handleRes(response) {
             if (training) {
                 alert("Training session is complete");
                 window.location.href = "/testing";
-            }
-            else{
+            } else {
                 alert("Testing session is complete");
                 window.location.href = "/thanks";
             }
