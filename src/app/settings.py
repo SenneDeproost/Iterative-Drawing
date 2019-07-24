@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'training',
     'testing',
     'form',
+    'index',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

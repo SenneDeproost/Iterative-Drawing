@@ -16,6 +16,9 @@ def training(request):
     training_ses = TrainingSession(str(time.time()))
     # Load all training cases into the TrainingSession class
     training_ses.load_cases()
+    print("-TRAINING-------------------------------------------")
+    print(training_ses.cases)
+    print("----------------------------------------------------")
     # Render the page
     return render(request, 'training.html')
 

@@ -20,7 +20,7 @@ function sendInput() {
     var data = JSON.stringify(frames);
 
     var xhr = new XMLHttpRequest();
-    var url = "/training/post_case/";
+    var url = window.location.href + "/post_case/";
 
     xhr.onreadystatechange = function () {
         // Check if fetch request is done
@@ -43,9 +43,13 @@ function handleRes(response) {
         case "not tolerated":
             break;
         case "session done":
-            alert("Training session is complete");
-            if (testing){
-                window.location.href = "/testing/";
+            if (training) {
+                alert("Training session is complete");
+                window.location.href = "./testing";
+            }
+            else{
+                alert("Testing session is complete");
+                window.location.href = "/";
             }
             break;
         default:

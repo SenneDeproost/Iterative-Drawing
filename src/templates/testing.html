@@ -27,12 +27,13 @@
 </head>
 <body>
 <div id="canvasDiv">
-    <p>Draw the symbol for "left"</p>
+    <p>Draw the symbol for</p>
+    <p id="actionToPerform"></p>
     <canvas id="canvas" width="800" height="800"></canvas>
 </div>
 <div id="controls">
-    <button type="button" onclick="resetCanvas(); resetPath()">Redo</button>
-    <button type="button" onclick="sendInput()">Submit</button>
+    <button type="button" onclick="drawCase(); resetPathRecord()">Redo</button>
+    <button type="button" onclick="sendInput(); resetPathRecord(); getCase()">Submit</button>
 </div>
 </body>
 </html>
