@@ -45,11 +45,11 @@ function handleRes(response) {
         case "session done":
             if (training) {
                 alert("Training session is complete");
-                window.location.href = "./testing";
+                window.location.href = "/testing";
             }
             else{
                 alert("Testing session is complete");
-                window.location.href = "/";
+                window.location.href = "/thanks";
             }
             break;
         default:
