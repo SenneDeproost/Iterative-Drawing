@@ -18,6 +18,8 @@ class TrainingSession:
 
     # Load TrainingCases
     def load_cases(self, *args):
+        self.cases = []  # Dirty solution to out-of-range bug
+        self.current_index = 0
         # Load actions.json
         actions = json.load(open(self.case_dir + "actions.json"))
         if args:
@@ -31,6 +33,7 @@ class TrainingSession:
             # For every name of action in the dictionary
             for name in action_names:
                 files.append(TrainingCase(self, name, self.case_dir + actions[name][0], self.tolerance))
+                print(self.case_dir + actions[name][0])
                 # Stop after n_cases
                 if len(self.cases) == self.n_cases:
                     break
@@ -93,6 +96,7 @@ class TrainingCase:
         trial.calc_error(user_input)
         res = trial.verify()
         self.trials.append(trial)
+        self.session.results.append(res)
         if res == "tolerated":
             if not self.session.next_case():
                 return "session done"

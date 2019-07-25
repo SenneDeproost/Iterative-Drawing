@@ -18,6 +18,8 @@ class TestingSession:
 
     # Load TestingCases
     def load_cases(self, *args):
+        self.cases = []  # Dirty solution to out-of-range bug
+        self.current_index = 0
         # Load actions.json
         actions = json.load(open(self.case_dir + "actions.json"))
         if args:
