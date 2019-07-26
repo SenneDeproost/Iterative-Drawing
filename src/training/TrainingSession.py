@@ -78,6 +78,7 @@ class TrainingCase:
         self.path = []
         self.session = session
         self.action = action
+        self.user_input = []
 
     # Load the case file and return a list of coordinates for the path.
     def load_case(self):
@@ -98,6 +99,8 @@ class TrainingCase:
         self.trials.append(trial)
         self.session.results.append(res)
         if res == "tolerated":
+            # Add user input to the input of previous sessions
+            self.user_input = self.user_input.append(user_input)
             if not self.session.next_case():
                 return "session done"
             else:
