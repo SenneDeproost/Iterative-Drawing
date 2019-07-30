@@ -1,6 +1,6 @@
 import hashlib
 import os
-import json
+import json, csv
 
 from testing.TestingSession import TestingSession
 from training.TrainingSession import TrainingSession
@@ -10,7 +10,7 @@ class Experiment:
     def __init__(self, training_session, testing_session):
         self.training = training_session
         self.testing = testing_session
-        self.exp_dir = "home/senne/Projects/follow_the_leader/experiments/"
+        self.exp_dir = "/home/senne/Projects/follow_the_leader/experiments/"
 
     def reset(self):
         self.training = TrainingSession()
@@ -19,21 +19,27 @@ class Experiment:
         self.testing.load_cases()
 
     # Save the gathered data of the experiment in several files.
-    def save(self, request):
+    def save(self, session):
         # User information
-        first_name = request.session['first_name']
-        last_name = request.session['last_name']
-        age = request.session['age']
-        email = request.Session['email']
-        timestamp = request.session['timestamp']
+        first_name = session['first_name']
+        last_name = session['last_name']
+        age = session['age']
+        email = session['email']
+        timestamp = session['timestamp']
+
         # User ID for hash
         id = first_name + last_name + str(timestamp)
         hash = hashlib.sha1(id.encode("UTF-8")).hexdigest()
         # Create directory for user data
-        data_path = self.exp_dir + hash
+        data_path = os.path.join(self.exp_dir, hash)
+        print(data_path)
         os.mkdir(data_path)
+
         # Create experiment data file. Paths are saved in separate files.
-        file = open(data_path + "/info.json", 'w')
+        info_file = open(data_path + "/info.json", 'w')
+        # Action file can be used to find the path corresponding to the action
+        actions_file = open(data_path + "/actions.json", 'w')
+
         data = {
             "user": {
                 "first_name": first_name,
@@ -45,19 +51,61 @@ class Experiment:
             "training": [],
             "testing": []
             }
+
+        actions = {}
+
         # Add training cases
         for case in self.training.cases:
             action = case.action
-            path_data = case.user_inputs
-            id = action + timestamp
+            path_data = case.user_input
+            id = action + str(timestamp) + "training"
+            hash = hashlib.sha1(id.encode("UTF-8")).hexdigest()
+
+            # Add file name to the info file.
+            data['training'].append(hash + ".csv")
+            # Add path to file
+            path_file = open(data_path + "/" + hash + ".csv", 'w')
+            f = csv.writer(path_file)
+
+            # Write CSV Header, If you dont need that, remove this line
+            f.writerow(["x", "y", "t"])
+            print(path_data)
+            for x in path_data:
+                f.writerow([x["x"],
+                            x["y"],
+                            "t"])
+            path_file.close()
+
+        # Add testing cases
+        for case in self.testing.cases:
+            action = case.action
+            path_data = case.user_input
+            id = action + str(timestamp) + "testing"
             hash = hashlib.sha1(id.encode("UTF-8")).hexdigest()
             # Add file name to the info file.
-            data['training'].append(hash)
+            data['testing'].append(hash + ".csv")
+            # Add path to file
             path_file = open(data_path + "/" + hash + ".csv", 'w')
-            json.dumps(path_data, path_file)
+            f = csv.writer(path_file)
 
-        # Dump data to json object
-        data = json.dumps(data)
+            # Write CSV Header, If you dont need that, remove this line
+            f.writerow(["x", "y", "t"])
+            for x in path_data:
+                f.writerow([x["x"],
+                            x["y"],
+                            "t"])
+            path_file.close()
+
+            # Associate actions with gathered paths
+            actions[action] = hash + ".csv"
+
+        # Write actions to actions.json
+        json.dump(actions, actions_file)
+        actions_file.close()
+
+        # Write to info file
+        json.dump(data, info_file)
+
 
 
 experiment = Experiment(TrainingSession(), TestingSession())

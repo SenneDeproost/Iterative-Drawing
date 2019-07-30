@@ -16,6 +16,7 @@ class TestingSession:
         self.cases = []  # Initialize with no cases loaded
         self.current_index = 0  # Index of the set of cases
 
+
     # Load TestingCases
     def load_cases(self, *args):
         self.cases = []  # Dirty solution to out-of-range bug
@@ -77,6 +78,7 @@ class TestingCase:
         self.path = []
         self.session = session
         self.action = action
+        self.user_input = []
 
     # Load the case file and return a list of coordinates for the path.
     def load_case(self):
@@ -99,6 +101,8 @@ class TestingCase:
             if not self.session.next_case():
                 return "session done"
             else:
+                # Add user input to the input of previous sessions
+                self.user_input = user_input
                 return res
         else:
             return "tolerated"

@@ -100,7 +100,7 @@ class TrainingCase:
         self.session.results.append(res)
         if res == "tolerated":
             # Add user input to the input of previous sessions
-            self.user_input = self.user_input.append(user_input)
+            self.user_input = user_input
             if not self.session.next_case():
                 return "session done"
             else:
