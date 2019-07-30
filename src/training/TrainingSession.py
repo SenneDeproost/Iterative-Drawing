@@ -145,4 +145,4 @@ class TrainingTrial:
         if result >= 0:
             return "tolerated"
         else:
-            return "tolerated"  # Should be "not tolerated"
+            return "not tolerated"  # Should be "not tolerated"
