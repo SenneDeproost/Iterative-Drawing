@@ -24,8 +24,6 @@ class TrainingSession:
         self.current_index = 0
         action_dir = actions_file[:-12]  # Parent folder of the action file
         # Load actions.json
-        print("**************")
-        print(self.actions)
         if args:
             # If a list of cases is given, load them into the session
             for arg in args:

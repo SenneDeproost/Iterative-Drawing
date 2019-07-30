@@ -2,16 +2,25 @@
 
 var frames = [];
 var host = window.location.hostname;
+var date = new Date();
+var start_time = date.getTime();
+var recording = false;
+
+function time(){
+    return date.getTime() - start_time;
+}
 
 // Record mouse movements
 $(window).mousemove(function (e) {
-    // button_pressed
-    var position = {"x": e.clientX, "y": e.clientY};
-    frames.push(position);
+    if (recording) {
+        var position = {"x": e.clientX, "y": e.clientY, "t": time()};
+        frames.push(position);
+    }
 });
 
 function resetPathRecord() {
     frames = [];
+    start_time = date.getTime();
 }
 
 // https://stackoverflow.com/questions/24468459/sending-a-json-to-server-and-retrieving-a-json-in-return-without-jquery
