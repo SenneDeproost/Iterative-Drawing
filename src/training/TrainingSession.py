@@ -7,8 +7,8 @@ import random
 # A training session consists of several training cases. These cases are randomly drawn from the case directory or can
 # specified as a list of case files.
 class TrainingSession:
-    def __init__(self, participant=None):
-        self.participant = participant
+    def __init__(self, actions_file="/home/senne/Projects/follow_the_leader/data/cases/actions.json"):
+        self.actions = json.load(open(actions_file))
         self.tolerance = 500  # Default error tolerance
         self.n_cases = 2  # Default number of test cases
         self.case_dir = "/home/senne/Projects/follow_the_leader/data/cases/"  # Directory for training cases
@@ -21,19 +21,18 @@ class TrainingSession:
         self.cases = []  # Dirty solution to out-of-range bug
         self.current_index = 0
         # Load actions.json
-        actions = json.load(open(self.case_dir + "actions.json"))
         if args:
             # If a list of cases is given, load them into the session
             for arg in args:
-                self.cases.append(TrainingCase(self, arg, self.case_dir + actions[arg][0], self.tolerance))
+                self.cases.append(TrainingCase(self, arg, self.case_dir + self.actions[arg][0], self.tolerance))
         else:
             # Chose actions from case_dir, according to actions dictionary
-            action_names = actions.keys()
+            action_names = self.actions.keys()
             files = []
             # For every name of action in the dictionary
             for name in action_names:
-                files.append(TrainingCase(self, name, self.case_dir + actions[name][0], self.tolerance))
-                print(self.case_dir + actions[name][0])
+                files.append(TrainingCase(self, name, self.case_dir + self.actions[name][0], self.tolerance))
+                print(self.case_dir + self.actions[name][0])
                 # Stop after n_cases
                 if len(self.cases) == self.n_cases:
                     break

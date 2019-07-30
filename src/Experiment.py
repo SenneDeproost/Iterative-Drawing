@@ -32,7 +32,6 @@ class Experiment:
         hash = hashlib.sha1(id.encode("UTF-8")).hexdigest()
         # Create directory for user data
         data_path = os.path.join(self.exp_dir, hash)
-        print(data_path)
         os.mkdir(data_path)
 
         # Create experiment data file. Paths are saved in separate files.
@@ -69,7 +68,6 @@ class Experiment:
 
             # Write CSV Header, If you dont need that, remove this line
             f.writerow(["x", "y", "t"])
-            print(path_data)
             for x in path_data:
                 f.writerow([x["x"],
                             x["y"],
@@ -105,6 +103,12 @@ class Experiment:
 
         # Write to info file
         json.dump(data, info_file)
+
+    def prev_user(self):
+        all_subdirs = [d for d in os.listdir(self.exp_dir) if os.path.isdir(d)]
+        latest_subdir = max(all_subdirs, key=os.path.getmtime)
+        return latest_subdir
+
 
 
 

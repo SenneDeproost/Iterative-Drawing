@@ -7,7 +7,7 @@ import random
 # A testing session consists of several testing cases. These cases are randomly drawn from the case directory or can
 # specified as a list of case files.
 class TestingSession:
-    def __init__(self, participant=None):
+    def __init__(self, participant=None, ):
         self.participant = participant
         self.tolerance = 500  # Default error tolerance
         self.n_cases = 2  # Default number of test cases
