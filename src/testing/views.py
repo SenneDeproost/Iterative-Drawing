@@ -23,7 +23,7 @@ def testing(request):
     global testing_ses
    # testing_ses = TestingSession(str(time.time()))
     # Load all testing cases into the TestingSession class
-    testing_ses.load_cases()
+    # testing_ses.load_cases()
     # Render the page
     return render(request, 'testing.html')
 

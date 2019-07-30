@@ -7,16 +7,18 @@ from training.TrainingSession import TrainingSession
 
 
 class Experiment:
-    def __init__(self, training_session, testing_session):
-        self.training = training_session
-        self.testing = testing_session
+    def __init__(self):
+        self.training = TrainingSession()
+        self.testing = TrainingSession()
+        self.training.load_cases()
+        self.testing.load_cases()
         self.exp_dir = "/home/senne/Projects/follow_the_leader/experiments/"
 
     def reset(self):
-        self.training = TrainingSession()
-        self.testing = TestingSession()
-        self.training.load_cases()
-        self.testing.load_cases()
+        actions = self.prev_user() + "/actions.json"
+        # Load with data from previous session
+        self.training.load_cases(actions_file=actions)
+        self.testing.load_cases(actions_file=actions)
 
     # Save the gathered data of the experiment in several files.
     def save(self, session):
@@ -31,7 +33,7 @@ class Experiment:
         id = first_name + last_name + str(timestamp)
         hash = hashlib.sha1(id.encode("UTF-8")).hexdigest()
         # Create directory for user data
-        data_path = os.path.join(self.exp_dir, hash)
+        data_path = os.path.join(self.exp_dir, hash[:10])
         os.mkdir(data_path)
 
         # Create experiment data file. Paths are saved in separate files.
@@ -57,13 +59,13 @@ class Experiment:
         for case in self.training.cases:
             action = case.action
             path_data = case.user_input
-            id = action + str(timestamp) + "training"
-            hash = hashlib.sha1(id.encode("UTF-8")).hexdigest()
+            id = action + "_training"
+           # hash = hashlib.sha1(id.encode("UTF-8")).hexdigest()
 
             # Add file name to the info file.
-            data['training'].append(hash + ".csv")
+            data['training'].append(id + ".csv")
             # Add path to file
-            path_file = open(data_path + "/" + hash + ".csv", 'w')
+            path_file = open(data_path + "/" + id + ".csv", 'w')
             f = csv.writer(path_file)
 
             # Write CSV Header, If you dont need that, remove this line
@@ -78,12 +80,12 @@ class Experiment:
         for case in self.testing.cases:
             action = case.action
             path_data = case.user_input
-            id = action + str(timestamp) + "testing"
-            hash = hashlib.sha1(id.encode("UTF-8")).hexdigest()
+            id = action + "_testing"
+            # hash = hashlib.sha1(id.encode("UTF-8")).hexdigest()
             # Add file name to the info file.
-            data['testing'].append(hash + ".csv")
+            data['testing'].append(id + ".csv")
             # Add path to file
-            path_file = open(data_path + "/" + hash + ".csv", 'w')
+            path_file = open(data_path + "/" + id + ".csv", 'w')
             f = csv.writer(path_file)
 
             # Write CSV Header, If you dont need that, remove this line
@@ -95,7 +97,7 @@ class Experiment:
             path_file.close()
 
             # Associate actions with gathered paths
-            actions[action] = hash + ".csv"
+            actions[action] = id + ".csv"
 
         # Write actions to actions.json
         json.dump(actions, actions_file)
@@ -105,11 +107,13 @@ class Experiment:
         json.dump(data, info_file)
 
     def prev_user(self):
-        all_subdirs = [d for d in os.listdir(self.exp_dir) if os.path.isdir(d)]
+        all_subdirs = [self.exp_dir + d for d in os.listdir(self.exp_dir)]
+        print("-----")
+        print(all_subdirs)
         latest_subdir = max(all_subdirs, key=os.path.getmtime)
         return latest_subdir
 
 
 
 
-experiment = Experiment(TrainingSession(), TestingSession())
+experiment = Experiment()

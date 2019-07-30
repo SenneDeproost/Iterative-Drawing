@@ -23,7 +23,7 @@ def training(request):
     global training_ses
    # training_ses = TrainingSession(str(time.time()))
     # Load all training cases into the TrainingSession class
-    training_ses.load_cases()
+    # training_ses.load_cases()
     # Render the page
     return render(request, 'training.html')
 

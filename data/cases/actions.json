@@ -1,9 +1,4 @@
 {
-  "left": [
-    "left.csv"
-  ],
-  "right": [
-    "right.csv",
-    "right2.csv"
-  ]
+  "left": "left.csv",
+  "right": "right.csv"
 }

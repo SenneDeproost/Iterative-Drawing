@@ -2,13 +2,14 @@ import csv
 import json
 import math
 import random
+import re
 
 
 # A training session consists of several training cases. These cases are randomly drawn from the case directory or can
 # specified as a list of case files.
 class TrainingSession:
-    def __init__(self, actions_file="/home/senne/Projects/follow_the_leader/data/cases/actions.json"):
-        self.actions = json.load(open(actions_file))
+    def __init__(self):
+        self.actions = []
         self.tolerance = 500  # Default error tolerance
         self.n_cases = 2  # Default number of test cases
         self.case_dir = "/home/senne/Projects/follow_the_leader/data/cases/"  # Directory for training cases
@@ -17,22 +18,25 @@ class TrainingSession:
         self.current_index = 0  # Index of the set of cases
 
     # Load TrainingCases
-    def load_cases(self, *args):
+    def load_cases(self, actions_file=("/home/senne/Projects/follow_the_leader/data/cases/" + "actions.json"), *args):
         self.cases = []  # Dirty solution to out-of-range bug
+        self.actions = json.load(open(actions_file))
         self.current_index = 0
+        action_dir = actions_file[:-12]  # Parent folder of the action file
         # Load actions.json
+        print("**************")
+        print(self.actions)
         if args:
             # If a list of cases is given, load them into the session
             for arg in args:
-                self.cases.append(TrainingCase(self, arg, self.case_dir + self.actions[arg][0], self.tolerance))
+                self.cases.append(TrainingCase(self, arg, action_dir + self.actions[arg], self.tolerance))
         else:
             # Chose actions from case_dir, according to actions dictionary
             action_names = self.actions.keys()
             files = []
             # For every name of action in the dictionary
             for name in action_names:
-                files.append(TrainingCase(self, name, self.case_dir + self.actions[name][0], self.tolerance))
-                print(self.case_dir + self.actions[name][0])
+                files.append(TrainingCase(self, name, action_dir + self.actions[name], self.tolerance))
                 # Stop after n_cases
                 if len(self.cases) == self.n_cases:
                     break
@@ -81,7 +85,9 @@ class TrainingCase:
 
     # Load the case file and return a list of coordinates for the path.
     def load_case(self):
+        print(self.file_path)
         file = open(self.file_path, 'rU')
+
         # Map the CSV file onto JSON
         reader = csv.DictReader(file)
         for row in reader:
@@ -139,4 +145,4 @@ class TrainingTrial:
         if result >= 0:
             return "tolerated"
         else:
-            return "not tolerated"
+            return "tolerated"  # Should be "not tolerated"
