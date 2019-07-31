@@ -27,7 +27,7 @@
 </head>
 <body>
 <div id="canvasDiv">
-    <canvas id="canvas" width="800" height="800"></canvas>
+    <canvas id="canvas" width="800" height="800" onmousedown="recording = true;" onmouseup="recording = false;"></canvas>
     <p>Draw the symbol for</p>
     <p id="actionToPerform">
         <img src="{%  static "img/loading.gif" %}" alt="Loading">
