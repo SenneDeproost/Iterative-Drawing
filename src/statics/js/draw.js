@@ -44,22 +44,22 @@ window.onload = function () {
     canvas.addEventListener('mouseup', function () {
         canvas.removeEventListener('mousemove', onPaint, false);
     }, false);
-    
+
 
     // Prevent scrolling when touching the canvas
     document.body.addEventListener("touchstart", function (e) {
         if (e.target == canvas) {
-            e.preventDefault();
+         //   e.preventDefault();
         }
     }, false);
     document.body.addEventListener("touchend", function (e) {
         if (e.target == canvas) {
-            e.preventDefault();
+           // e.preventDefault();
         }
     }, false);
     document.body.addEventListener("touchmove", function (e) {
         if (e.target == canvas) {
-            e.preventDefault();
+          //  e.preventDefault();
         }
     }, false);
 
@@ -69,6 +69,8 @@ window.onload = function () {
     canvas.addEventListener("touchstart", function (e) {
         mousePos = getTouchPos(canvas, e);
         var touch = e.touches[0];
+        mouse.x = touch.clientX;
+        mouse.y = touch.clientY;
         var mouseEvent = new MouseEvent("mousedown", {
             clientX: touch.clientX,
             clientY: touch.clientY
