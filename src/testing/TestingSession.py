@@ -89,7 +89,7 @@ class TestingCase:
         for row in reader:
             row['x'] = int(row['x'])
             row['y'] = int(row['y'])
-            row['t'] = int(row['t'])
+            #row['t'] = int(row['t'])
             self.path.append(row)
             # self.path.append(json.dumps(row))  # To stringify the JSON object
 
