@@ -17,10 +17,10 @@ class Experiment:
     def reset(self):
         actions = self.prev_user() + "/actions.json"
         # Load with data from previous session
-        #self.training.load_cases(actions_file=actions)
-        #self.testing.load_cases(actions_file=actions)
-        self.training.load_cases()
-        self.testing.load_cases()
+        self.training.load_cases(actions_file=actions)
+        self.testing.load_cases(actions_file=actions)
+        #self.training.load_cases()
+        #self.testing.load_cases()
 
     # Save the gathered data of the experiment in several files.
     def save(self, session):
