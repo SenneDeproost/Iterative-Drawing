@@ -7,6 +7,7 @@ var start_time = date.getTime();
 var recording = false;
 
 function time(){
+    date = new Date()
     return date.getTime() - start_time;
 }
 
