@@ -87,8 +87,8 @@ class TestingCase:
         # Map the CSV file onto JSON
         reader = csv.DictReader(file)
         for row in reader:
-            row['x'] = int(row['x'])
-            row['y'] = int(row['y'])
+            row['x'] = int(float(row['x']))
+            row['y'] = int(float(row['y']))
             # row['t'] = int(row['t'])
             self.path.append(row)
             # self.path.append(json.dumps(row))  # To stringify the JSON object
