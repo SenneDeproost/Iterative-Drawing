@@ -1,12 +1,10 @@
-import time
+import json
+import os
+import sys
 
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-
-import sys
-import os
-import json
 
 PACKAGE_PARENT = '..'
 SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), os.path.expanduser(__file__))))
@@ -21,7 +19,7 @@ testing_ses = experiment.testing
 # When testing is loaded, create a new TestingSession.
 def testing(request):
     global testing_ses
-   # testing_ses = TestingSession(str(time.time()))
+    # testing_ses = TestingSession(str(time.time()))
     # Load all testing cases into the TestingSession class
     # testing_ses.load_cases()
     # Render the page

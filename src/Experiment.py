@@ -1,6 +1,7 @@
+import csv
 import hashlib
+import json
 import os
-import json, csv
 
 from testing.TestingSession import TestingSession
 from training.TrainingSession import TrainingSession
@@ -19,8 +20,8 @@ class Experiment:
         # Load with data from previous session
         self.training.load_cases(actions_file=actions)
         self.testing.load_cases(actions_file=actions)
-        #self.training.load_cases()
-        #self.testing.load_cases()
+        # self.training.load_cases()
+        # self.testing.load_cases()
 
     # Save the gathered data of the experiment in several files.
     def save(self, session):
@@ -53,7 +54,7 @@ class Experiment:
             },
             "training": [],
             "testing": []
-            }
+        }
 
         actions = {}
 
@@ -62,7 +63,7 @@ class Experiment:
             action = case.action
             path_data = case.user_input
             id = action + "_training"
-           # hash = hashlib.sha1(id.encode("UTF-8")).hexdigest()
+            # hash = hashlib.sha1(id.encode("UTF-8")).hexdigest()
 
             # Add file name to the info file.
             data['training'].append(id + ".csv")
@@ -112,8 +113,6 @@ class Experiment:
         all_subdirs = [self.exp_dir + d for d in os.listdir(self.exp_dir)]
         latest_subdir = max(all_subdirs, key=os.path.getmtime)
         return latest_subdir
-
-
 
 
 experiment = Experiment()

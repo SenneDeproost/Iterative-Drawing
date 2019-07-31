@@ -18,7 +18,7 @@
     <meta charset="UTF-8">
     <title>Training session</title>
     {% load static %}
-    <script src="{%  static "js/jquery.min.js" %}"></script>
+    <script src="{% static "js/jquery.min.js" %}"></script>
     <script src="{% static "js/draw.js" %}"></script>
     <script src="{% static "js/path.js" %}"></script>
     {% comment %} <script src="../statics/js/draw.js"></script>
@@ -32,7 +32,7 @@
             ontouchstart="recording = true;" ontouchend="recording = false;"></canvas>
     <p>Draw the symbol for</p>
     <p id="actionToPerform">
-        <img src="{%  static "img/loading.gif" %}" alt="Loading">
+        <img src="{% static "img/loading.gif" %}" alt="Loading">
     </p>
 </div>
 <div id="controls">

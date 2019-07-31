@@ -17,7 +17,7 @@ class TestingSession:
         self.current_index = 0  # Index of the set of cases
 
     # Load TestingCases
-    def load_cases(self, actions_file=("/home/senne/Projects/follow_the_leader/data/cases/"+"actions.json"), *args):
+    def load_cases(self, actions_file=("/home/senne/Projects/follow_the_leader/data/cases/" + "actions.json"), *args):
         self.cases = []  # Dirty solution to out-of-range bug
         self.actions = json.load(open(actions_file))
         self.current_index = 0
@@ -89,7 +89,7 @@ class TestingCase:
         for row in reader:
             row['x'] = int(row['x'])
             row['y'] = int(row['y'])
-            #row['t'] = int(row['t'])
+            # row['t'] = int(row['t'])
             self.path.append(row)
             # self.path.append(json.dumps(row))  # To stringify the JSON object
 

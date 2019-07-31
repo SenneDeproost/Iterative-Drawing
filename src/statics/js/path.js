@@ -6,8 +6,8 @@ var date = new Date();
 var start_time = date.getTime();
 var recording = false;
 
-function time(){
-    date = new Date()
+function time() {
+    date = new Date();
     return date.getTime() - start_time;
 }
 
@@ -18,6 +18,15 @@ $(window).mousemove(function (e) {
         frames.push(position);
     }
 });
+// Touch movement
+document.addEventListener('touchmove', function (e) {
+    if (recording) {
+        // e.preventDefault();
+        var touch = e.touches[0];
+        var position = {"x": touch.pageX, "y": touch.pageY, "t": time()};
+        frames.push(position);
+    }
+}, false);
 
 function resetPathRecord() {
     frames = [];
