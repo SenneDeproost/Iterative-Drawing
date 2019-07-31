@@ -96,6 +96,7 @@ function getCase() {
 
 // Called whenever the readyState attribute changes
     xhr.onreadystatechange = function () {
+        //document.getElementById("actionToPerform").innerHTML = "<img src=\"{%  static \"img/loading.gif\" %}\" alt=\"Loading\">";
 
         // Check if fetch request is done
         if (xhr.readyState == 4 && xhr.status == 200) {

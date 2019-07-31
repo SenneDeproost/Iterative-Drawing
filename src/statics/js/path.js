@@ -21,7 +21,8 @@ $(window).mousemove(function (e) {
 
 function resetPathRecord() {
     frames = [];
-    start_time = date.getTime();
+    var d = new Date();
+    start_time = d.getTime();
 }
 
 // https://stackoverflow.com/questions/24468459/sending-a-json-to-server-and-retrieving-a-json-in-return-without-jquery

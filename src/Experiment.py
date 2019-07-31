@@ -9,7 +9,7 @@ from training.TrainingSession import TrainingSession
 class Experiment:
     def __init__(self):
         self.training = TrainingSession()
-        self.testing = TrainingSession()
+        self.testing = TestingSession()
         self.training.load_cases()
         self.testing.load_cases()
         self.exp_dir = "/home/senne/Projects/follow_the_leader/experiments/"
@@ -17,8 +17,10 @@ class Experiment:
     def reset(self):
         actions = self.prev_user() + "/actions.json"
         # Load with data from previous session
-        self.training.load_cases(actions_file=actions)
-        self.testing.load_cases(actions_file=actions)
+        #self.training.load_cases(actions_file=actions)
+        #self.testing.load_cases(actions_file=actions)
+        self.training.load_cases()
+        self.testing.load_cases()
 
     # Save the gathered data of the experiment in several files.
     def save(self, session):
@@ -73,7 +75,7 @@ class Experiment:
             for x in path_data:
                 f.writerow([x["x"],
                             x["y"],
-                            "t"])
+                            x["t"]])
             path_file.close()
 
         # Add testing cases
@@ -93,7 +95,7 @@ class Experiment:
             for x in path_data:
                 f.writerow([x["x"],
                             x["y"],
-                            "t"])
+                            x["t"]])
             path_file.close()
 
             # Associate actions with gathered paths
@@ -108,8 +110,6 @@ class Experiment:
 
     def prev_user(self):
         all_subdirs = [self.exp_dir + d for d in os.listdir(self.exp_dir)]
-        print("-----")
-        print(all_subdirs)
         latest_subdir = max(all_subdirs, key=os.path.getmtime)
         return latest_subdir
 
