@@ -132,6 +132,7 @@ function drawPath(cse) {
     setPenSettings();
 }
 
+
 // https://www.quackit.com/json/tutorial/json_with_http.cfm
 // Make a connection with the server an load in the path of the test case.
 function getCase() {
@@ -167,8 +168,7 @@ function setAction(action) {
 function loadCase(data) {
     path = data.path;
     action = data.action;
-    resetCanvas();
-    if(training){drawCase(path)}
+    if(training){drawCase(path)} else {resetCanvas()}
     setAction(action);
 }
 
@@ -288,6 +288,7 @@ function handleRes(response) {
             break;
     }
     getCase();
+    resetPathRecord();
 }
 
 var record = true;
