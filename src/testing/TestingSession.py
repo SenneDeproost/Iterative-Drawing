@@ -99,12 +99,13 @@ class TestingCase:
         trial.calc_error(user_input)
         res = trial.verify()
         self.trials.append(trial)
+        self.session.results.append(res)
         if True:
+            self.user_input = user_input
             if not self.session.next_case():
                 return "session done"
             else:
                 # Add user input to the input of previous sessions
-                self.user_input = user_input
                 return res
         else:
             return "tolerated"
@@ -141,4 +142,4 @@ class TestingTrial:
         if result >= 0:
             return "tolerated"
         else:
-            return "not tolerated"
+            return "tolerated" # Testing phase tolerates everything

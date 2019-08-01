@@ -36,7 +36,6 @@ def get_case(request):
 # To do when the user submits input: extract, verify and judge the data.
 def post_case(request):
     if request.method == 'POST':
-        print("This is TrainingSession")
         user_input = json.loads(request.body)
         case = testing_ses.current_case()
         res = case.try_trial(user_input)

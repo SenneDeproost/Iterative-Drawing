@@ -9,6 +9,7 @@ var mouse = {x: 0, y: 0};
 var training = true;
 var host = window.location.hostname;
 
+
 // Default
 var path = [];
 var action;
@@ -26,6 +27,13 @@ window.onload = function () {
     ctx = canvas.getContext('2d');
     painting = document.getElementById('canvasDiv');
     paint_style = getComputedStyle(painting);
+
+    // Prevent scrolling while drawing
+canvas.addEventListener("touchstart",  function(event) {event.preventDefault()})
+canvas.addEventListener("touchmove",   function(event) {event.preventDefault()})
+canvas.addEventListener("touchend",    function(event) {event.preventDefault()})
+canvas.addEventListener("touchcancel", function(event) {event.preventDefault()})
+
 
     setPenSettings();
 
@@ -293,3 +301,5 @@ function handleRes(response) {
 }
 
 var record = true;
+
+
