@@ -227,7 +227,7 @@ function time() {
 // Record mouse movements
 $(window).mousemove(function (e) {
     if (recording) {
-        var position = {"x": e.clientX, "y": e.clientY, "t": time()};
+        var position = {"x": Math.round(e.clientX), "y": Math.round(e.clientY), "t": Math.round(time())};
         frames.push(position);
     }
 });
@@ -236,7 +236,7 @@ document.addEventListener('touchmove', function (e) {
     if (recording) {
         // e.preventDefault();
         var touch = e.touches[0];
-        var position = {"x": touch.pageX, "y": touch.pageY, "t": time()};
+        var position = {"x": Math.round(touch.pageX), "y": Math.round(touch.pageY), "t": Math.round(time())};
         frames.push(position);
     }
 }, { passive: true });
@@ -274,6 +274,7 @@ function handleRes(response) {
         case "tolerated":
             break;
         case "not tolerated":
+            console.log("not tolerated");
             break;
         case "session done":
             if (training) {

@@ -26,5 +26,5 @@ urlpatterns = [
     path('training/', include('training.urls')),
     path('thanks/', views.thanks),
     # path('test/', include('index.urls')),
-    path('testing/', include('testing.urls')),
+    path('testing/', include('testing.urls'))
 ]
