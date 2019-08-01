@@ -100,10 +100,10 @@ function setPenSettings() {
 function drawCase() {
     // Clear the canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    // Draw path when in training mode
-    if (training) {
-        drawPath(path);
-    }
+    // Draw path with arrow head
+    var len = path.length;
+    drawPath(path);
+    drawArrowhead(ctx, path[len - 2], path[len - 1], 25);
 }
 
 // Draw path function
@@ -159,7 +159,42 @@ function setAction(action) {
 function loadCase(data) {
     path = data.path;
     action = data.action;
-    drawCase(path);
+    if(training){drawCase(path)}
     setAction(action);
 }
+
+// Draw rectangle function, at the end of the line
+// From https://gist.github.com/jwir3/d797037d2e1bf78a9b04838d73436197
+function drawArrowhead(context, from, to, radius) {
+	var x_center = to.x;
+	var y_center = to.y;
+
+	var angle;
+	var x;
+	var y;
+
+	context.beginPath();
+
+	angle = Math.atan2(to.y - from.y, to.x - from.x)
+	x = radius * Math.cos(angle) + x_center;
+	y = radius * Math.sin(angle) + y_center;
+
+	context.moveTo(x, y);
+
+	angle += (1.0/3.0) * (2 * Math.PI)
+	x = radius * Math.cos(angle) + x_center;
+	y = radius * Math.sin(angle) + y_center;
+
+	context.lineTo(x, y);
+
+	angle += (1.0/3.0) * (2 * Math.PI)
+	x = radius *Math.cos(angle) + x_center;
+	y = radius *Math.sin(angle) + y_center;
+
+	context.lineTo(x, y);
+
+	context.closePath();
+
+	context.fill();}
+
 
