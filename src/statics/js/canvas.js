@@ -296,7 +296,7 @@ function handleRes(response) {
         case "tolerated":
             break;
         case "not tolerated":
-            console.log("not tolerated");
+            alert("Not good enough. Please redraw.");
             break;
         case "session done":
             if (training) {

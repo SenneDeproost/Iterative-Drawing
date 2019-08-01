@@ -11,7 +11,6 @@ from Experiment import experiment
 
 
 def home(request):
-    experiment.reset()
     return render(request, "home.html")
 
 

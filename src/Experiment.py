@@ -6,7 +6,8 @@ import os
 from testing.TestingSession import TestingSession
 from training.TrainingSession import TrainingSession
 
-exp_dir = "/home/senne/Projects/follow_the_leader/experiments/"
+# Define directory for experiments data
+exp_dir = "/home/senne/Projects/follow_the_leader/data/experiments/"
 
 
 class Experiment:
@@ -14,10 +15,10 @@ class Experiment:
         actions = self.prev_user() + "/actions.json"
         self.training = TrainingSession()
         self.testing = TestingSession()
-        # self.training.load_cases()
-        # self.testing.load_cases()
-        self.training.load_cases(actions_file=actions)
-        self.testing.load_cases(actions_file=actions)
+        self.training.load_cases()
+        self.testing.load_cases()
+        # self.training.load_cases(actions_file=actions)
+        # self.testing.load_cases(actions_file=actions)
 
     def reset(self):
         actions = self.prev_user() + "/actions.json"
