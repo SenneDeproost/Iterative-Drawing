@@ -26,7 +26,7 @@ document.addEventListener('touchmove', function (e) {
         var position = {"x": touch.pageX, "y": touch.pageY, "t": time()};
         frames.push(position);
     }
-}, false);
+}, { passive: true });
 
 function resetPathRecord() {
     frames = [];

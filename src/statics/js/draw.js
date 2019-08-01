@@ -57,12 +57,12 @@ window.onload = function () {
             clientY: touch.clientY
         });
         canvas.dispatchEvent(mouseEvent);
-    }, false);
+    }, { passive: true });
 
     canvas.addEventListener("touchend", function (e) {
         var mouseEvent = new MouseEvent("mouseup", {});
         canvas.dispatchEvent(mouseEvent);
-    }, false);
+    }, { passive: true });
 
     canvas.addEventListener("touchmove", function (e) {
         var touch = e.touches[0];
@@ -71,7 +71,7 @@ window.onload = function () {
             clientY: touch.clientY
         });
         canvas.dispatchEvent(mouseEvent);
-    }, false);
+    }, { passive: true });
 
 // Get the position of a touch relative to the canvas
     function getTouchPos(canvasDom, touchEvent) {
@@ -95,11 +95,15 @@ function setPenSettings() {
     ctx.lineCap = 'round';
     ctx.strokeStyle = '#00CC99';
 }
+function resetCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
 
-// Reset canvas is used when a user wants to redo its input.
+
+// Draw the case
 function drawCase() {
     // Clear the canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    resetCanvas();
     // Draw path with arrow head
     var len = path.length;
     drawPath(path);
@@ -159,13 +163,14 @@ function setAction(action) {
 function loadCase(data) {
     path = data.path;
     action = data.action;
+    resetCanvas();
     if(training){drawCase(path)}
     setAction(action);
 }
 
 // Draw rectangle function, at the end of the line
 // From https://gist.github.com/jwir3/d797037d2e1bf78a9b04838d73436197
-function drawArrowhead(context, from, to, radius) {
+function drawArrowhead(context, frm, to, radius) {
 	var x_center = to.x;
 	var y_center = to.y;
 
@@ -175,7 +180,7 @@ function drawArrowhead(context, from, to, radius) {
 
 	context.beginPath();
 
-	angle = Math.atan2(to.y - from.y, to.x - from.x)
+	angle = Math.atan2(to.y - frm.y, to.x - frm.x);
 	x = radius * Math.cos(angle) + x_center;
 	y = radius * Math.sin(angle) + y_center;
 
