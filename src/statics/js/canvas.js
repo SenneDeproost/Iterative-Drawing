@@ -287,6 +287,7 @@ function handleRes(response) {
         default:
             break;
     }
+    getCase();
 }
 
 var record = true;
