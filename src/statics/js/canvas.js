@@ -29,10 +29,18 @@ window.onload = function () {
     paint_style = getComputedStyle(painting);
 
     // Prevent scrolling while drawing
-canvas.addEventListener("touchstart",  function(event) {event.preventDefault()})
-canvas.addEventListener("touchmove",   function(event) {event.preventDefault()})
-canvas.addEventListener("touchend",    function(event) {event.preventDefault()})
-canvas.addEventListener("touchcancel", function(event) {event.preventDefault()})
+    canvas.addEventListener("touchstart", function (event) {
+        event.preventDefault()
+    });
+    canvas.addEventListener("touchmove", function (event) {
+        event.preventDefault()
+    });
+    canvas.addEventListener("touchend", function (event) {
+        event.preventDefault()
+    });
+    canvas.addEventListener("touchcancel", function (event) {
+        event.preventDefault()
+    });
 
 
     setPenSettings();
@@ -69,12 +77,12 @@ canvas.addEventListener("touchcancel", function(event) {event.preventDefault()})
             clientY: touch.clientY
         });
         canvas.dispatchEvent(mouseEvent);
-    }, { passive: true });
+    }, {passive: true});
 
     canvas.addEventListener("touchend", function (e) {
         var mouseEvent = new MouseEvent("mouseup", {});
         canvas.dispatchEvent(mouseEvent);
-    }, { passive: true });
+    }, {passive: true});
 
     canvas.addEventListener("touchmove", function (e) {
         var touch = e.touches[0];
@@ -83,7 +91,7 @@ canvas.addEventListener("touchcancel", function(event) {event.preventDefault()})
             clientY: touch.clientY
         });
         canvas.dispatchEvent(mouseEvent);
-    }, { passive: true });
+    }, {passive: true});
 
 // Get the position of a touch relative to the canvas
     function getTouchPos(canvasDom, touchEvent) {
@@ -107,6 +115,7 @@ function setPenSettings() {
     ctx.lineCap = 'round';
     ctx.strokeStyle = '#00CC99';
 }
+
 function resetCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
@@ -176,43 +185,48 @@ function setAction(action) {
 function loadCase(data) {
     path = data.path;
     action = data.action;
-    if(training){drawCase(path)} else {resetCanvas()}
+    if (training) {
+        drawCase(path)
+    } else {
+        resetCanvas()
+    }
     setAction(action);
 }
 
 // Draw rectangle function, at the end of the line
 // From https://gist.github.com/jwir3/d797037d2e1bf78a9b04838d73436197
 function drawArrowhead(context, frm, to, radius) {
-	var x_center = to.x;
-	var y_center = to.y;
+    var x_center = to.x;
+    var y_center = to.y;
 
-	var angle;
-	var x;
-	var y;
+    var angle;
+    var x;
+    var y;
 
-	context.beginPath();
+    context.beginPath();
 
-	angle = Math.atan2(to.y - frm.y, to.x - frm.x);
-	x = radius * Math.cos(angle) + x_center;
-	y = radius * Math.sin(angle) + y_center;
+    angle = Math.atan2(to.y - frm.y, to.x - frm.x);
+    x = radius * Math.cos(angle) + x_center;
+    y = radius * Math.sin(angle) + y_center;
 
-	context.moveTo(x, y);
+    context.moveTo(x, y);
 
-	angle += (1.0/3.0) * (2 * Math.PI)
-	x = radius * Math.cos(angle) + x_center;
-	y = radius * Math.sin(angle) + y_center;
+    angle += (1.0 / 3.0) * (2 * Math.PI);
+    x = radius * Math.cos(angle) + x_center;
+    y = radius * Math.sin(angle) + y_center;
 
-	context.lineTo(x, y);
+    context.lineTo(x, y);
 
-	angle += (1.0/3.0) * (2 * Math.PI)
-	x = radius *Math.cos(angle) + x_center;
-	y = radius *Math.sin(angle) + y_center;
+    angle += (1.0 / 3.0) * (2 * Math.PI);
+    x = radius * Math.cos(angle) + x_center;
+    y = radius * Math.sin(angle) + y_center;
 
-	context.lineTo(x, y);
+    context.lineTo(x, y);
 
-	context.closePath();
+    context.closePath();
 
-	context.fill();}
+    context.fill();
+}
 
 
 /////////////////////////////////////
@@ -247,7 +261,7 @@ document.addEventListener('touchmove', function (e) {
         var position = {"x": Math.round(touch.pageX), "y": Math.round(touch.pageY), "t": Math.round(time())};
         frames.push(position);
     }
-}, { passive: true });
+}, {passive: true});
 
 function resetPathRecord() {
     frames = [];

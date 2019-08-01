@@ -8,13 +8,14 @@ from training.TrainingSession import TrainingSession
 
 exp_dir = "/home/senne/Projects/follow_the_leader/experiments/"
 
+
 class Experiment:
     def __init__(self):
         actions = self.prev_user() + "/actions.json"
         self.training = TrainingSession()
         self.testing = TestingSession()
-        #self.training.load_cases()
-        #self.testing.load_cases()
+        # self.training.load_cases()
+        # self.testing.load_cases()
         self.training.load_cases(actions_file=actions)
         self.testing.load_cases(actions_file=actions)
 
