@@ -6,14 +6,17 @@ import os
 from testing.TestingSession import TestingSession
 from training.TrainingSession import TrainingSession
 
+exp_dir = "/home/senne/Projects/follow_the_leader/experiments/"
 
 class Experiment:
     def __init__(self):
+        actions = self.prev_user() + "/actions.json"
         self.training = TrainingSession()
         self.testing = TestingSession()
-        self.training.load_cases()
-        self.testing.load_cases()
-        self.exp_dir = "/home/senne/Projects/follow_the_leader/experiments/"
+        #self.training.load_cases()
+        #self.testing.load_cases()
+        self.training.load_cases(actions_file=actions)
+        self.testing.load_cases(actions_file=actions)
 
     def reset(self):
         actions = self.prev_user() + "/actions.json"
@@ -36,7 +39,7 @@ class Experiment:
         id = first_name + last_name + str(timestamp)
         hash = hashlib.sha1(id.encode("UTF-8")).hexdigest()
         # Create directory for user data
-        data_path = os.path.join(self.exp_dir, hash[:10])
+        data_path = os.path.join(exp_dir, hash[:10])
         os.mkdir(data_path)
 
         # Create experiment data file. Paths are saved in separate files.
@@ -110,7 +113,7 @@ class Experiment:
         json.dump(data, info_file)
 
     def prev_user(self):
-        all_subdirs = [self.exp_dir + d for d in os.listdir(self.exp_dir)]
+        all_subdirs = [exp_dir + d for d in os.listdir(exp_dir)]
         latest_subdir = max(all_subdirs, key=os.path.getmtime)
         return latest_subdir
 

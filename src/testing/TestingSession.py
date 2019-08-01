@@ -9,7 +9,7 @@ import random
 class TestingSession:
     def __init__(self):
         self.actions = []
-        self.tolerance = 500  # Default error tolerance
+        self.tolerance = 1000  # Default error tolerance
         self.n_cases = 2  # Default number of test cases
         self.case_dir = "/home/senne/Projects/follow_the_leader/data/cases/"  # Directory for testing cases
         self.results = []  # Results of the testing session
