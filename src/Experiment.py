@@ -1,14 +1,15 @@
 import csv
 import hashlib
 import json
-import os
+import os, sys
 
 from testing.TestingSession import TestingSession
 from training.TrainingSession import TrainingSession
 
+
 # Define directory for experiments data
-dir_path = os.path.dirname(os.path.realpath(__file__))
-exp_dir = "/home/senne/Projects/Itterative Drawing/data/experiments/"
+config = json.load(open("config.json", "r"))
+exp_dir = config["EXPERIMENT_DIR"]
 
 
 class Experiment:
