@@ -69,3 +69,6 @@ fabric.properties
 
 # Experiments folder
 data/experiments/
+
+# Env folder
+env/

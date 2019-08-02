@@ -8,8 +8,7 @@ from training.TrainingSession import TrainingSession
 
 
 # Define directory for experiments data
-config = json.load(open("config.json", "r"))
-exp_dir = config["EXPERIMENT_DIR"]
+exp_dir = "/home/senne/Projects/Iterative-Drawing/data/experiments/"
 
 
 class Experiment:
