@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/follow_the_leader.iml" filepath="$PROJECT_DIR$/.idea/follow_the_leader.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Itterative Drawing/.idea/Itterative Drawing.iml" filepath="$PROJECT_DIR$/../Itterative Drawing/.idea/Itterative Drawing.iml" />
     </modules>
   </component>
 </project>

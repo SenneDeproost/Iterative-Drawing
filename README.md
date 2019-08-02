@@ -8,7 +8,19 @@ The source code of the project is contained within the *src* folder.
 
 In the *src* folder, the *activate_experiment.sh* file can be executed to start the Django server. 
 
+
+
+
+
+
+
+
+
+
+
 ## Frontend
+
+The statics folder contains all static elements like JavaScript, CSS and images.  The *canvas.js* file contains the draw application as well as path recording functions during the Session.
 
 ## Backend
 
@@ -23,6 +35,8 @@ A simple RESTful API is used for data transfer between client and host while on 
 #### TraingSession
 
 #### TestingSession
+
+## Data
 
 
 

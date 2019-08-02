@@ -11,13 +11,13 @@ class TestingSession:
         self.actions = []
         self.tolerance = 1000  # Default error tolerance
         self.n_cases = 2  # Default number of test cases
-        self.case_dir = "/home/senne/Projects/follow_the_leader/data/cases/"  # Directory for testing cases
+        self.case_dir = "/home/senne/Projects/Itterative Drawing/data/cases/"  # Directory for testing cases
         self.results = []  # Results of the testing session
         self.cases = []  # Initialize with no cases loaded
         self.current_index = 0  # Index of the set of cases
 
     # Load TestingCases
-    def load_cases(self, actions_file=("/home/senne/Projects/follow_the_leader/data/cases/" + "actions.json"), *args):
+    def load_cases(self, actions_file=("/home/senne/Projects/Itterative Drawing/data/cases/" + "actions.json"), *args):
         self.cases = []  # Dirty solution to out-of-range bug
         self.actions = json.load(open(actions_file))
         self.current_index = 0

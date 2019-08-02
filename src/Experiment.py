@@ -7,7 +7,8 @@ from testing.TestingSession import TestingSession
 from training.TrainingSession import TrainingSession
 
 # Define directory for experiments data
-exp_dir = "/home/senne/Projects/follow_the_leader/data/experiments/"
+dir_path = os.path.dirname(os.path.realpath(__file__))
+exp_dir = "/home/senne/Projects/Itterative Drawing/data/experiments/"
 
 
 class Experiment:

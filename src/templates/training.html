@@ -21,8 +21,6 @@
     {% load static %}
     <script src="{% static "js/jquery.min.js" %}"></script>
     <script src="{% static "js/canvas.js" %}"></script>
-    {% comment %} <script src="../statics/js/canvas.js"></script>
-      <script src="../statics/js/path.js"></script>{% endcomment %}
     <script>training = true;</script>
 </head>
 <body>
@@ -31,9 +29,8 @@
             onmousedown="recording = true;" onmouseup="recording = false;"
             ontouchstart="recording = true;" ontouchend="recording = false;"></canvas>
     <p>Draw the symbol for</p>
-    <p id="actionToPerform">
-        <img src="{% static "img/loading.gif" %}" alt="Loading">
-    </p>
+    <p id="actionToPerform"</p>
+     <img id="loading" src="{% static "img/loading.gif" %}" alt="Loading">
 </div>
 <div id="controls">
     <button type="button" onclick="drawCase();">Redo</button>

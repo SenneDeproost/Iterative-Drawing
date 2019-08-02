@@ -1,4 +1,4 @@
-#!/Users/senne/Projects/follow_the_leader/env/bin/python3.7
+#!/Users/senne/Projects/Itterative Drawing/env/bin/python3.7
 from django.core import management
 
 if __name__ == "__main__":

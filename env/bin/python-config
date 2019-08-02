@@ -1,4 +1,4 @@
-#!/Users/senne/Projects/follow_the_leader/env/bin/python
+#!/Users/senne/Projects/Itterative Drawing/env/bin/python
 
 import getopt
 import sys

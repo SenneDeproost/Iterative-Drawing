@@ -1,20 +1,26 @@
+////////////////////////////////////////////////////////////////////////////////////
+//////////                  CANVAS                      ////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+
+/*Functions for enabling the drawing and recording part of the experiment.*/
+
 /////////////////////////////////////
 //// DRAW ///////////////////////////
 /////////////////////////////////////
 
 // Inspired by https://www.codicode.com/art/how_to_draw_on_a_html5_canvas_with_a_mouse.aspx
 
+// Global variables
 var canvas, ctx, painting, paint_style;
 var mouse = {x: 0, y: 0};
 var training = true;
 var host = window.location.hostname;
 
-
-// Default
+// Defaults
 var path = [];
 var action;
 
-// Draw
+// Draw action
 function onPaint() {
     ctx.lineTo(mouse.x, mouse.y);
     ctx.stroke();
@@ -22,13 +28,14 @@ function onPaint() {
 
 // When the page is done loading, get the necessary elements of the page and load the drawing application
 window.onload = function () {
+
     // Elements of the canvas
     canvas = document.getElementById('canvas');
     ctx = canvas.getContext('2d');
     painting = document.getElementById('canvasDiv');
     paint_style = getComputedStyle(painting);
 
-    // Prevent scrolling while drawing
+    // Prevent scrolling while drawing for touch devices
     canvas.addEventListener("touchstart", function (event) {
         event.preventDefault()
     });
@@ -42,10 +49,8 @@ window.onload = function () {
         event.preventDefault()
     });
 
+    // Follow the mouse in order to draw on the canvas.
 
-    setPenSettings();
-
-    // Add eventListeners to the canvas
     // Moving mouse
     canvas.addEventListener('mousemove', function (e) {
         mouse.x = e.pageX - this.offsetLeft;
@@ -65,8 +70,9 @@ window.onload = function () {
         canvas.removeEventListener('mousemove', onPaint, false);
     }, false);
 
-    // Equivalence for touch devices
     // Set up touch events for mobile, etc
+
+    // TouchStart
     canvas.addEventListener("touchstart", function (e) {
         mousePos = getTouchPos(canvas, e);
         var touch = e.touches[0];
@@ -79,11 +85,13 @@ window.onload = function () {
         canvas.dispatchEvent(mouseEvent);
     }, {passive: true});
 
+    // TouchEnd
     canvas.addEventListener("touchend", function (e) {
         var mouseEvent = new MouseEvent("mouseup", {});
         canvas.dispatchEvent(mouseEvent);
     }, {passive: true});
 
+    // TouchMove
     canvas.addEventListener("touchmove", function (e) {
         var touch = e.touches[0];
         var mouseEvent = new MouseEvent("mousemove", {
@@ -102,7 +110,8 @@ window.onload = function () {
         };
     }
 
-
+    // Initialize pen settings and get the first case of the experiment.
+    setPenSettings();
     getCase();
 
 };
@@ -119,7 +128,6 @@ function setPenSettings() {
 function resetCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
-
 
 // Draw the case
 function drawCase() {
@@ -151,7 +159,7 @@ function drawPath(cse) {
 
 
 // https://www.quackit.com/json/tutorial/json_with_http.cfm
-// Make a connection with the server an load in the path of the test case.
+// Make a connection with the server an load in the path of the case.
 function getCase() {
 
     var xhr = new XMLHttpRequest();
@@ -159,7 +167,6 @@ function getCase() {
 
 // Called whenever the readyState attribute changes
     xhr.onreadystatechange = function () {
-        //document.getElementById("actionToPerform").innerHTML = "<img src=\"{%  static \"img/loading.gif\" %}\" alt=\"Loading\">";
 
         // Check if fetch request is done
         if (xhr.readyState == 4 && xhr.status == 200) {
