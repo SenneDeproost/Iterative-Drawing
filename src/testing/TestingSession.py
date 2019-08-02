@@ -3,7 +3,6 @@ import json
 import math
 import random
 
-
 # A testing session consists of several testing cases. These cases are randomly drawn from the case directory or can
 # specified as a list of case files.
 class TestingSession:
@@ -11,14 +10,13 @@ class TestingSession:
         self.actions = []
         self.tolerance = 1000  # Default error tolerance
         self.n_cases = 2  # Default number of test cases
-        self.case_dir = "/home/senne/Projects/Iterative-Drawing/data/cases/"  # Directory for testing cases
         self.results = []  # Results of the testing session
         self.cases = []  # Initialize with no cases loaded
         self.current_index = 0  # Index of the set of cases
 
     # Load TestingCases
-    def load_cases(self, actions_file=("/home/senne/Projects/Iterative-Drawing/data/cases/" + "actions.json"), *args):
-        self.cases = []  # Dirty solution to out-of-range bug
+    def load_cases(self, actions_file, *args):
+        self.cases = []
         self.actions = json.load(open(actions_file))
         self.current_index = 0
         action_dir = actions_file[:-12]  # Parent folder of the action file

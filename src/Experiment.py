@@ -7,8 +7,10 @@ from testing.TestingSession import TestingSession
 from training.TrainingSession import TrainingSession
 
 
-# Define directory for experiments data
+# Path to initial cases
+case_dir = "/home/senne/Projects/Iterative-Drawing/data/cases/"
 exp_dir = "/home/senne/Projects/Iterative-Drawing/data/experiments/"
+# case_dir = exp_dir
 
 
 class Experiment:
@@ -16,8 +18,9 @@ class Experiment:
         actions = self.prev_user() + "/actions.json"
         self.training = TrainingSession()
         self.testing = TestingSession()
-        self.training.load_cases()
-        self.testing.load_cases()
+        self.training.load_cases(actions_file=case_dir + "/actions.json")
+        self.testing.load_cases(actions_file=case_dir + "/actions.json")
+        # Uncomment below to further experiment on previous gathered experiments.
         # self.training.load_cases(actions_file=actions)
         # self.testing.load_cases(actions_file=actions)
 

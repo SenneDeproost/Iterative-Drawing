@@ -242,12 +242,14 @@ function drawArrowhead(context, frm, to, radius) {
 
 // Inspired by https://codepen.io/jakebown/pen/weoVxg
 
+// Defaults
 var frames = [];
 var host = window.location.hostname;
 var date = new Date();
 var start_time = date.getTime();
 var recording = false;
 
+// Get time in milliseconds
 function time() {
     date = new Date();
     return date.getTime() - start_time;
@@ -260,6 +262,7 @@ $(window).mousemove(function (e) {
         frames.push(position);
     }
 });
+
 // Touch movement
 document.addEventListener('touchmove', function (e) {
     if (recording) {
@@ -270,6 +273,7 @@ document.addEventListener('touchmove', function (e) {
     }
 }, {passive: true});
 
+// Reset the frames and start_time variables
 function resetPathRecord() {
     frames = [];
     var d = new Date();
@@ -277,6 +281,7 @@ function resetPathRecord() {
 }
 
 // https://stackoverflow.com/questions/24468459/sending-a-json-to-server-and-retrieving-a-json-in-return-without-jquery
+// Send input back to the server
 function sendInput() {
 
     var data = JSON.stringify(frames);
@@ -297,6 +302,7 @@ function sendInput() {
     xhr.send(data);
 }
 
+// Callback function to handle the response of the server
 function handleRes(response) {
     // Can we go to the next case, do we have to retry or is the session over?
     switch (response) {
@@ -321,6 +327,6 @@ function handleRes(response) {
     resetPathRecord();
 }
 
-var record = true;
+
 
 
