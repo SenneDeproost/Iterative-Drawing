@@ -19,7 +19,7 @@ def home(request):
 def thanks(request):
     # experiment variable is globally defined in the Experiments.py class.
     global experiment
-    # When the thank you page is loaded, the experiment is saved and reset for a next session.
+    # When the thank you page is loaded, the experiment data is saved and reset for a next session.
     experiment.save(request.session)
     experiment.reset()
     return render(request, "thanks.html")

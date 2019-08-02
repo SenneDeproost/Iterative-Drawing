@@ -12,3 +12,17 @@ In the *src* folder, the *activate_experiment.sh* file can be executed to start 
 
 ## Backend
 
+### Form
+
+In *src/form//models.py*, the form can be defined for registering a new user. Default, first/second name, mail and age are asked. 
+
+### RESTful API
+
+A simple RESTful API is used for data transfer between client and host while on a page. 
+
+#### TraingSession
+
+#### TestingSession
+
+
+
