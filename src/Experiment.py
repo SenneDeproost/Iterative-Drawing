@@ -8,9 +8,11 @@ from training.TrainingSession import TrainingSession
 
 
 # Path to initial cases
-case_dir = "/home/senne/Projects/Iterative-Drawing/data/cases/"
-exp_dir = "/home/senne/Projects/Iterative-Drawing/data/experiments/"
+case_dir = os.getcwd() + "/data/cases/"
+exp_dir = os.getcwd() + "/data/experiments/"
 # case_dir = exp_dir
+print("Using " + case_dir + " for initial cases.")
+print("Using " + exp_dir + " for experimental cases.")
 
 
 class Experiment:

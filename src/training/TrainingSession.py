@@ -80,7 +80,6 @@ class TrainingCase:
 
     # Load the case file and return a list of coordinates for the path.
     def load_case(self):
-        print(self.file_path)
         file = open(self.file_path, 'rU')
 
         # Map the CSV file onto JSON

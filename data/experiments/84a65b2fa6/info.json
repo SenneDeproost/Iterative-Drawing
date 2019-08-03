@@ -1,0 +1,1 @@
+{"user": {"first_name": "X", "last_name": "Y", "age": 1, "email": "a@bc.de", "timestamp": 1564666309.7389483}, "training": ["right_training.csv", "left_training.csv"], "testing": ["left_testing.csv", "right_testing.csv"]}
