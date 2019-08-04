@@ -136,7 +136,12 @@ function drawCase() {
     // Draw path with arrow head
     var len = path.length;
     drawPath(path);
-    drawArrowhead(ctx, path[len - 2], path[len - 1], 25);
+    if(len < 5) {
+        drawArrowhead(ctx, path[len - 2], path[len - 1], 25);
+    }
+    else{
+        drawArrowhead(ctx, path[len - 5], path[len - 1], 25);
+    }
 }
 
 // Draw path function
