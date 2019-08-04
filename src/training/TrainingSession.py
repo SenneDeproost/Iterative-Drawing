@@ -3,6 +3,7 @@ import json
 import math
 import random
 
+
 # A training session consists of several training cases. These cases are randomly drawn from the case directory or can
 # specified as a list of case files.
 class TrainingSession:

@@ -3,6 +3,7 @@ import json
 import math
 import random
 
+
 # A testing session consists of several testing cases. These cases are randomly drawn from the case directory or can
 # specified as a list of case files.
 class TestingSession:
@@ -97,15 +98,12 @@ class TestingCase:
         res = trial.verify()
         self.trials.append(trial)
         self.session.results.append(res)
-        if True:
-            self.user_input = user_input
-            if not self.session.next_case():
-                return "session done"
-            else:
-                # Add user input to the input of previous sessions
-                return res
+        self.user_input = user_input
+        if not self.session.next_case():
+            return "session done"
         else:
-            return "tolerated"
+            # Add user input to the input of previous sessions
+            return res
 
 
 # Each submitted input is validated in a TestingTrial.

@@ -1,7 +1,7 @@
 import csv
 import hashlib
 import json
-import os, sys
+import os
 
 from testing.TestingSession import TestingSession
 from training.TrainingSession import TrainingSession
@@ -10,14 +10,14 @@ from training.TrainingSession import TrainingSession
 # Path to initial cases
 case_dir = os.getcwd() + "/data/cases/"
 exp_dir = os.getcwd() + "/data/experiments/"
-# case_dir = exp_dir
 print("Using " + case_dir + " for initial cases.")
 print("Using " + exp_dir + " for experimental cases.")
 
 
 class Experiment:
+    # Initialization of the experiment
     def __init__(self):
-        actions = self.prev_user() + "/actions.json"
+        actions = self.prev_user() + "/actions.json" # Get data previous session. 
         self.training = TrainingSession()
         self.testing = TestingSession()
         self.training.load_cases(actions_file=case_dir + "/actions.json")
@@ -120,6 +120,7 @@ class Experiment:
         # Write to info file
         json.dump(data, info_file)
 
+# Get directory with newest timestamp (easy to find the data of the previous experiment)
     def prev_user(self):
         all_subdirs = [exp_dir + d for d in os.listdir(exp_dir)]
         latest_subdir = max(all_subdirs, key=os.path.getmtime)
