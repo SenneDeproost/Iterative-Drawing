@@ -115,29 +115,41 @@ class TrainingTrial:
         self.case_data = case_data
         self.tolerance = tolerance
         self.error = None
+        self.wrong_direction = False
 
     # Check user input with the path of the case. The input is an JSON array of X Y key fields describing the
     # coordinates.
     def calc_error(self, user_input):
         distances = []
+        closest_points = []
         # Check distance error for every point in case path
         for casePoint in self.case_data:
             case_x = casePoint['x']
             case_y = casePoint['y']
             lowest_distance = float("inf")
+            closest_point = None
             for inputPoint in user_input:
                 input_x = inputPoint['x']
                 input_y = inputPoint['y']
                 distance = math.sqrt((case_x - input_x) ** 2 + (case_y - input_y) ** 2)
                 if lowest_distance > distance:
                     lowest_distance = distance
+                    closest_point = inputPoint
             distances.append(lowest_distance)
+            closest_points.append(closest_point)
+
+        # Check direction
+        time_A = closest_points[0]['t']
+        time_B = closest_points[-1]['t']
+        if time_B < time_A:
+            self.wrong_direction = True
+
         self.error = sum(distances)
 
     # Verify the gathered results of the trial
     def verify(self):
         result = self.tolerance - self.error
-        if result >= 0:
+        if result >= 0 and not self.wrong_direction:
             return "tolerated"
         else:
             return "not tolerated"  # Should be "not tolerated"
